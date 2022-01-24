@@ -6,11 +6,16 @@ module.exports = {
 	],
 	darkMode: 'class',
 	theme: {
+		fontFamily: {
+			serif: ['"Times New Roman"', 'serif'],
+			sans: ['"IBM Plex Sans"', 'sans-serif'],
+			mono: ['"IBM Plex Mono"', 'monospace']
+		},
 		extend: {
-			typography: theme => ({
+			typography: (theme) => ({
 				DEFAULT: {
 					css: {
-            '--tw-prose-bullets': theme('colors.black'),
+						'--tw-prose-bullets': theme('colors.black')
 					}
 				}
 			})

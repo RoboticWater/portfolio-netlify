@@ -16,55 +16,28 @@
 	export let origin = '';
 </script>
 
-<div class="flex flex-col justify-center px-4 sm:px-8 bg-gray-50 dark:bg-gray-900">
-	<Nav />
-</div>
-<main class="flex flex-col justify-center px-4 sm:px-8 bg-gray-50 dark:bg-gray-900">
+<header class="fixed left-8 right-8 top-8 flex justify-between">
+	<div class="text-xl">John Britti</div>
+	<div class="flex gap-4">
+		<a href="#Home" class="text-zinc-800">Home</a>
+		<a href="#Work" class="text-zinc-800">Work</a>
+		<a href="#Skills" class="text-zinc-800">Skills</a>
+		<a href="#Resume" class="text-zinc-800">Resume</a>
+	</div>
+</header>
+
+<main class="flex flex-col justify-center px-4 sm:px-8 text-zinc-800 dark:bg-gray-900">
 	<slot />
 </main>
 
-<footer class="flex flex-col justify-center items-start max-w-2xl mx-auto w-full mb-8">
-	<hr class="w-full border-1 border-gray-200 dark:border-gray-800 mb-8" />
-	<!-- <div class="w-full max-w-2xl grid grid-cols-1 gap-4 pb-16 sm:grid-cols-3"> -->
-	<div class="w-full max-w-2xl px-4 sm:px-8  grid grid-cols-1 gap-4 pb-16 sm:grid-cols-2">
-		<div class="flex flex-col space-y-4">
-			<a class="text-gray-500 hover:text-gray-300 transition" href="/">Home</a><a
-				class="text-gray-500 hover:text-gray-300 transition"
-				href="/about">About</a
-			>
-			<a class="text-gray-500 hover:text-gray-300 transition" href="/#newsletter">Newsletter</a>
-			<a
-				class="text-gray-500 hover:text-gray-300 transition"
-				href={origin + '/api/rss.xml'}
-				rel="external">RSS</a
-			>
-		</div>
-		<div class="flex flex-col space-y-4">
-			<a
-				class="text-gray-500 hover:text-gray-300 transition"
-				target="_blank"
-				rel="noopener noreferrer"
-				href={MY_TWITTER}>Twitter</a
-			><a
-				class="text-gray-500 hover:text-gray-300 transition"
-				target="_blank"
-				rel="noopener noreferrer"
-				href={REPO_URL}>GitHub</a
-			><a
-				class="text-gray-500 hover:text-gray-300 transition"
-				target="_blank"
-				rel="noopener noreferrer"
-				href={MY_YOUTUBE}>YouTube</a
-			>
-		</div>
-		<!-- <div class="flex flex-col space-y-4">
-			<a class="text-gray-500 hover:text-gray-600 transition" href="/uses">Uses</a><a
-				class="text-gray-500 hover:text-gray-600 transition"
-				href="/guestbook">Guestbook</a
-			><a class="text-gray-500 hover:text-gray-600 transition" href="/snippets">Snippets</a><a
-				class="text-gray-500 hover:text-gray-600 transition"
-				href="/tweets">Tweets</a
-			>
-		</div> -->
+<footer class="fixed left-8 right-8 bottom-8 flex justify-between">
+	<div class="text-xl">Portfolio 2020</div>
+	<div class="flex gap-2 items-end">
+		<div class="bg-red-500 w-3 h-3" />
+		<div class="bg-amber-300 w-3 h-3" />
+		<div class="bg-blue-500 w-3 h-3" />
+		<div class="bg-pink-100 w-3 h-3" />
+		<div class="bg-emerald-400 w-3 h-3" />
+		<div class="bg-black w-3 h-3" />
 	</div>
 </footer>
