@@ -1,5 +1,9 @@
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 export const SITE_URL = 'https://britti.page';
-export const GH_USER_REPO = 'sw-yx/swyxkit'; // used for pulling github issues and offering comments
+export const GH_USER_REPO = 'RoboticWater/portfolio-netlify'; // used for pulling github issues and offering comments
 export const REPO_URL = 'https://github.com/' + GH_USER_REPO;
 export const SITE_TITLE = 'Portfolio | John Britti';
 export const SITE_DESCRIPTION = "John Britti's portfolio";
