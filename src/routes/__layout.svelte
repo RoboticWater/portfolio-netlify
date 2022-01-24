@@ -19,10 +19,10 @@
 <header class="fixed left-8 right-8 top-8 flex justify-between">
 	<div class="text-xl">John Britti</div>
 	<div class="flex gap-4">
-		<a href="#Home" class="text-zinc-800">Home</a>
-		<a href="#Work" class="text-zinc-800">Work</a>
+		<a href="/" class="text-zinc-800">Home</a>
+		<a href="/work" class="text-zinc-800">Work</a>
 		<a href="#Skills" class="text-zinc-800">Skills</a>
-		<a href="#Resume" class="text-zinc-800">Resume</a>
+		<a href="/Britti-Resume-2022.pdf" target="_blank" class="text-zinc-800">Resume</a>
 	</div>
 </header>
 
