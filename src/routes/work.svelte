@@ -52,7 +52,7 @@
 	{#if list.length}
 		<WorkItem href={list[0].slug} title={list[0].title} />
 		<div class="flex-1 grid content-center justify-center font-bold text-5xl">
-			<div class="description">{list[0].description}</div>
+			<div class="description">{list[0].subtitle}</div>
 		</div>
 	{/if}
 	<!-- <div class="flex flex-col">
