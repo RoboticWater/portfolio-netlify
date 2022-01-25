@@ -44,13 +44,13 @@
 </script>
 
 <svelte:head>
-	<title>Swyxkit Blog Index</title>
+	<title>Works | John Britti</title>
 	<meta name="description" content="Latest Hacker News stories in the {list} category" />
 </svelte:head>
 
 <section class="flex">
 	{#if list.length}
-		<WorkItem href={list[0].slug} title={list[0].title} />
+		<WorkItem href={list[0].slug} title={list[0].title} img={list[0].data.img} />
 		<div class="flex-1 grid content-center justify-center font-bold text-5xl">
 			<div class="description">{list[0].subtitle}</div>
 		</div>
