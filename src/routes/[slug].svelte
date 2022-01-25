@@ -35,14 +35,28 @@
 </script>
 
 <script>
+	import { parseISO, format } from 'date-fns';
+
 	import 'prism-themes/themes/prism-shades-of-purple.min.css';
 	import Newsletter from '../components/Newsletter.svelte';
 	import Reactions from '../components/Reactions.svelte';
-	export let json
+
+	export let json = {};
 	let title = json.title;
+	let subtitle = json.subtitle;
 	let date = json.date;
 	let content = json.content;
 	let ghMetadata = json.ghMetadata;
+	let img = json.data.img;
+	let imgAttributionLink = json.data.imgAttributionLink;
+	let imgAttributionAuthor = json.data.imgAttributionAuthor;
+	console.log(json);
+	let sections = [
+		{
+			title: 'test',
+			hash: '#test'
+		}
+	];
 	// export let slug;
 	// export let REPO_URL
 </script>
@@ -67,39 +81,62 @@
 	{/if}
 </svelte:head>
 
-<article class="flex flex-col px-4 sm:px-8 items-start justify-center w-full max-w-2xl mx-auto mb-16">
-	<h1 class="mb-8 text-3xl font-bold tracking-tight text-black md:text-5xl dark:text-white ">
-		{title}
-	</h1>
-	<div class="flex sm:flex-col sm:items-start justify-between w-full mt-2 md:flex-row md:items-center bg">
-		<p class="flex items-center text-sm text-gray-700 dark:text-gray-300">swyx</p>
-		<p class="flex items-center text-sm text-gray-600 dark:text-gray-400 min-w-32 md:mt-0">
-			<a href={ghMetadata.issueUrl} rel="external" class="no-underline" target="_blank">
-				<span class="mr-4 text-xs font-mono text-opacity-70 text-gray-700 dark:text-gray-300"
-					>{ghMetadata.reactions.total_count} reactions</span
-				>
-			</a>
-			{new Date(date).toISOString().slice(0, 10)}
-		</p>
+<article class="grid">
+	<div class="title">
+		<h1 class="uppercase italic font-serif font-black text-zinc-800 text-7xl">{title}</h1>
+		<div class="subtitle font-mono text-xl">{subtitle}</div>
 	</div>
-	<div class="flex h-1 w-[100vw] sm:w-full -mx-4 sm:mx-0 my-2 bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500" />
-
-	<div class="w-full mt-16 mb-32 prose dark:prose-invert max-w-none">
-		{@html content}
+	<div class="navigation">
+		<nav class="sticky">
+			<ul>
+				{#each sections as section}
+					<li><a href={section.hash}>{section.title}</a></li>
+				{/each}
+			</ul>
+		</nav>
+	</div>
+	<div class="main-img bg-center" style={`background-image: url(${img})`} />
+	<div class="content">
+		<div class="meta grid-cols-3 grid">
+			<div class="meta-item">
+				<h2 class="font-mono">Date</h2>
+				<div class="meta-item__content">{format(parseISO(date), 'MMMM yyyy')}</div>
+			</div>
+		</div>
+		<div class="post">
+			<div class="w-full mb-32 prose dark:prose-invert max-w-none">
+				{@html content}
+			</div>
+		</div>
+	</div>
+	<div class="img-attribution text-right">
+		{#if imgAttributionAuthor}<a href={imgAttributionLink}>Image</a> by {imgAttributionAuthor}{/if}
 	</div>
 </article>
-<div class="max-w-2xl mx-auto">
-	<div class="prose dark:prose-invert border-t border-b p-4 border-blue-800 mb-12">
-		{#if ghMetadata.reactions.total_count > 0}
-			Reactions: <Reactions {ghMetadata} />
-		{:else}
-			<a href={ghMetadata.issueUrl}>Leave a reaction </a>
-			if you liked this post! 🧡
-		{/if}
-	</div>
-	<div class="mb-8">
-		<Comments {ghMetadata} />
-	</div>
 
-	<Newsletter />
-</div>
+<style>
+	article {
+		grid-template-areas:
+			'. title main-img main-img main-img'
+			'. navigation content . img-attribution';
+		grid-template-columns: 1fr 200px 720px 200px 1fr;
+		grid-template-rows: 540px auto;
+	}
+	.title {
+		grid-area: title;
+	}
+	.navigation {
+		grid-area: navigation;
+	}
+	.main-img {
+		grid-area: main-img;
+	}
+	.content {
+		grid-area: content;
+	}
+	.img-attribution {
+		grid-area: img-attribution;
+		padding-top: 4px;
+		padding-right: 8px;
+	}
+</style>

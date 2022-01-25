@@ -1,7 +1,3 @@
-import dotenv from 'dotenv';
-
-dotenv.config();
-
 export const SITE_URL = 'https://britti.page';
 export const GH_USER_REPO = 'RoboticWater/portfolio-netlify'; // used for pulling github issues and offering comments
 export const REPO_URL = 'https://github.com/' + GH_USER_REPO;

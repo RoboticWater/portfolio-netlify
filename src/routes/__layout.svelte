@@ -16,8 +16,8 @@
 	export let origin = '';
 </script>
 
-<header class="fixed left-8 right-8 top-8 flex justify-between">
-	<div class="text-xl">John Britti</div>
+<header class="fixed left-8 right-8 top-8 flex justify-between text-zinc-800">
+	<div class="text-xl"><a href="/" class="text-zinc-800">John Britti</a></div>
 	<div class="flex gap-4">
 		<a href="/" class="text-zinc-800">Home</a>
 		<a href="/work" class="text-zinc-800">Work</a>
@@ -26,7 +26,7 @@
 	</div>
 </header>
 
-<main class="flex flex-col justify-center px-4 sm:px-8 text-zinc-800 dark:bg-gray-900">
+<main class="flex flex-col justify-center text-zinc-800 dark:bg-gray-900">
 	<slot />
 </main>
 
