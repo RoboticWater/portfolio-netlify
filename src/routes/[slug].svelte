@@ -123,7 +123,7 @@
 	<div class="title grid items-center">
 		<div class="title__content">
 			<h1 class="italic font-serif font-black text-zinc-800 text-7xl mb-8">
-				<a href="#description" class="py-2 pr-2 bg-white relative">
+				<a href="#description" class="py-2 pr-5 bg-white relative">
 					{title}
 					<span class="absolute -right-4 -bottom-4 top-4 left-0 bg-emerald-400" />
 				</a>
@@ -187,18 +187,19 @@
 		grid-template-columns: 1fr 200px 720px 200px 1fr;
 		grid-template-rows: 540px auto;
 		padding-bottom: 1000px;
+		/* animation: article-intro 0.5s cubic-bezier(0.17, 0.45, 0.11, 0.9); */
 	}
 	.title {
 		grid-area: title;
 	}
 	.title a {
-		white-space: pre-wrap;
+		/* white-space: pre-wrap; */
 	}
 	.title a span {
 		z-index: -1;
 	}
 	.title__content {
-		width: 50vw;
+		width: 920px;
 		/* margin-left: 0; */
 	}
 	.subtitle {
@@ -211,6 +212,7 @@
 	}
 	.navigation {
 		grid-area: navigation;
+		/* animation: content-intro 0.3s cubic-bezier(0.17, 0.45, 0.11, 0.9); */
 	}
 	.main-img {
 		grid-area: main-img;
@@ -219,6 +221,7 @@
 	.content {
 		grid-area: content;
 		position: relative;
+		/* animation: content-intro 0.3s cubic-bezier(0.17, 0.45, 0.11, 0.9); */
 	}
 	.content:after {
 		content: '';
@@ -240,5 +243,21 @@
 	}
 	.arrow.active {
 		width: 10px;
+	}
+	@keyframes article-intro {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+	@keyframes content-intro {
+		0% {
+			margin-top: 100px;
+		}
+		100% {
+			margin-top: 0;
+		}
 	}
 </style>
