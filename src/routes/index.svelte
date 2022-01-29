@@ -13,6 +13,7 @@
 <script>
 	import Newsletter from '../components/Newsletter.svelte';
 	import FeatureCard from '../components/FeatureCard.svelte';
+	let y;
 </script>
 
 <svelte:head>
@@ -32,10 +33,30 @@
 	<meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
 </svelte:head>
 
+<svelte:window bind:scrollY={y} />
+
 <div
-	class="grid place-content-center text-center leading-none text-9xl uppercase italic font-serif font-black h-screen gap-3"
+	class="main grid place-content-center text-center leading-none text-9xl uppercase italic font-serif font-black h-screen gap-3 fixed top-0 left-0 right-0 bottom-0"
 >
 	<h1>Research</h1>
 	<h1>Development</h1>
 	<h1>Design</h1>
+	<div
+		class="shade absolute top-0 left-0 right-0 bottom-0"
+		style={`backdrop-filter: blur(${
+			Math.min((5 * y) / window.innerHeight, 1) * 50
+		}px); background-color: rgba(255, 255, 255, ${(y / window.innerHeight) * 0.1});`}
+	/>
 </div>
+<div class="description mb-36">
+	<p>Test</p>
+</div>
+
+<style>
+	.main {
+		z-index: -1;
+	}
+	.description {
+		margin-top: 100vh;
+	}
+</style>

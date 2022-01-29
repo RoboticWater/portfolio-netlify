@@ -16,7 +16,7 @@
 	export let origin = '';
 </script>
 
-<header class="fixed left-0 right-0 top-0 flex justify-between text-zinc-800 ">
+<header class="fixed left-0 right-0 top-0 flex justify-between text-zinc-800 z-50">
 	<div class="text-xl p-8"><a href="/" class="text-zinc-800">John Britti</a></div>
 	<div class="flex items-center gap-4 bg-white p-8 rounded-bl-md">
 		<a href="/" class="text-zinc-800">Home</a>
