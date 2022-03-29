@@ -41,15 +41,15 @@
 	<h1>Research</h1>
 	<h1>Development</h1>
 	<h1>Design</h1>
-	<div
+	<!-- <div
 		class="shade absolute top-0 left-0 right-0 bottom-0"
 		style={`backdrop-filter: blur(${
 			Math.min((5 * y) / window.innerHeight, 1) * 50
 		}px); background-color: rgba(255, 255, 255, ${(y / window.innerHeight) * 0.1});`}
-	/>
+	/> -->
 </div>
 <div class="description mb-36">
-	<p>Test</p>
+	<p>Hi, I'm John, a Developer turned designer turned researcher</p>
 </div>
 
 <style>

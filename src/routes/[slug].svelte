@@ -108,7 +108,7 @@
 	<meta name="Description" content={json.description} />
 	<meta property="og:description" content={json.description} />
 	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:creator" content="https://twitter.com/swyx/" />
+	<!-- <meta name="twitter:creator" content="https://twitter.com/swyx/" /> -->
 	<meta name="twitter:title" content={title} />
 	<meta name="twitter:description" content={json.description} />
 	{#if json.image}
@@ -119,17 +119,19 @@
 
 <svelte:window bind:scrollY={y} on:hashchange={() => (currentEntry = location.hash)} />
 
-<article class="grid">
+<article class="grid pb-80">
 	<div class="title grid items-center">
-		<div class="title__content">
+		<div class="title__content relative">
 			<h1 class="italic font-serif font-black text-zinc-800 text-7xl mb-8">
 				<a href="#description" class="py-2 pr-5 bg-white relative">
 					{title}
-					<span class="absolute -right-4 -bottom-4 top-4 left-0 bg-emerald-400" />
+					<span class="absolute -right-4 -bottom-4 top-4 left-0 bg-emerald-400 -z-10" />
 				</a>
 			</h1>
 			<div class="max-w-lg">
-				<span class="subtitle font-mono text-xl bg-white p-2 leading-relaxed">{subtitle}</span>
+				<span class="subtitle font-mono text-xl bg-white p-2 leading-relaxed top-0.5"
+					>{subtitle}</span
+				>
 			</div>
 		</div>
 	</div>
@@ -140,7 +142,9 @@
 				{#each sections as section}
 					<li class="font-mono text-zinc-600 text-xs mb-1">
 						<a class="flex" href={section.hash}>
-							<div class="arrow" class:active={section.hash === currentEntry}>→</div>
+							<div class="arrow overflow-hidden" class:active={section.hash === currentEntry}>
+								→
+							</div>
 							{section.title}
 						</a>
 					</li>
@@ -148,15 +152,18 @@
 			</ul>
 		</nav>
 	</div>
-	<div
-		class="main-img bg-center rounded-bl-lg relative"
-		style={`background-image: url(${img}); top: ${y * 0.3}px`}
-	>
-		<div class="img-attribution text-right font-mono text-xs absolute -bottom-5 right-2">
+	<div class="main-img relative -z-10" style={`top: ${y * 0.3}px`}>
+		<div class="overflow-hidden w-full h-full">
+			<div
+				class="inner-img relative bg-center rounded-bl-lg w-full h-full"
+				style={`background-image: url(${img});`}
+			/>
+		</div>
+		<div class="ext-right font-mono text-xs absolute -bottom-5 right-2">
 			{#if imgAttributionAuthor}<a class="text-zinc-800" href={imgAttributionLink}>Image</a> by {imgAttributionAuthor}{/if}
 		</div>
 	</div>
-	<div class="content bg-white pt-8 rounded-tr-lg pr-8">
+	<div class="content bg-white pt-8 rounded-tr-lg pr-8 relative">
 		<div class="meta columns-3 mb-8">
 			<div class="break-inside-avoid mb-6">
 				<MetaList name="Date" list={[format(parseISO(date), 'MMMM yyyy')]} />
@@ -186,42 +193,33 @@
 			'. navigation content . .';
 		grid-template-columns: 1fr 200px 720px 200px 1fr;
 		grid-template-rows: 540px auto;
-		padding-bottom: 1000px;
-		/* animation: article-intro 0.5s cubic-bezier(0.17, 0.45, 0.11, 0.9); */
+		animation: fade-article 800ms cubic-bezier(0.33, 0.43, 0.04, 0.97);
 	}
 	.title {
 		grid-area: title;
 	}
-	.title a {
-		/* white-space: pre-wrap; */
-	}
-	.title a span {
-		z-index: -1;
-	}
 	.title__content {
 		width: 920px;
-		/* margin-left: 0; */
+		animation: fade-title 500ms cubic-bezier(0.33, 0.43, 0.04, 0.97);
 	}
 	.subtitle {
 		white-space: pre-wrap;
 		padding-left: 0px;
-		/* box-shadow: -16px 0 0 #fff; */
 		max-width: 600px;
-		top: 2px;
 		position: relative;
 	}
 	.navigation {
 		grid-area: navigation;
-		/* animation: content-intro 0.3s cubic-bezier(0.17, 0.45, 0.11, 0.9); */
 	}
 	.main-img {
 		grid-area: main-img;
-		z-index: -10;
+	}
+	.inner-img {
+		animation: fade-image 900ms cubic-bezier(0.33, 0.43, 0.04, 0.97);
 	}
 	.content {
 		grid-area: content;
-		position: relative;
-		/* animation: content-intro 0.3s cubic-bezier(0.17, 0.45, 0.11, 0.9); */
+		animation: fade-content 700ms cubic-bezier(0.33, 0.43, 0.04, 0.97);
 	}
 	.content:after {
 		content: '';
@@ -233,31 +231,43 @@
 		background: radial-gradient(circle at 100% 0, #fff0 0.5rem, #fff 9px);
 		z-index: 10;
 	}
-	.img-attribution {
-	}
-
 	.arrow {
 		width: 0px;
-		overflow: hidden;
 		transition: width 0.15s ease;
 	}
 	.arrow.active {
 		width: 10px;
 	}
-	@keyframes article-intro {
-		0% {
+	@keyframes fade-article {
+		from {
 			opacity: 0;
 		}
-		100% {
+		to {
 			opacity: 1;
 		}
 	}
-	@keyframes content-intro {
-		0% {
-			margin-top: 100px;
+	@keyframes fade-title {
+		from {
+			top: -80px;
 		}
-		100% {
-			margin-top: 0;
+		to {
+			top: 0;
+		}
+	}
+	@keyframes fade-content {
+		from {
+			top: 80px;
+		}
+		to {
+			top: 0;
+		}
+	}
+	@keyframes fade-image {
+		from {
+			transform: scale(1.2);
+		}
+		to {
+			transform: scale(1);
 		}
 	}
 </style>
