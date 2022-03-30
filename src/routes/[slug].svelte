@@ -120,7 +120,7 @@
 <svelte:window bind:scrollY={y} on:hashchange={() => (currentEntry = location.hash)} />
 
 <article class="grid pb-80">
-	<div class="title grid items-center">
+	<div class="title z-10 grid items-center">
 		<div class="title__content relative">
 			<h1 class="italic font-serif font-black text-zinc-800 text-7xl mb-8">
 				<a href="#description" class="py-2 pr-5 bg-white relative">
@@ -128,14 +128,14 @@
 					<span class="absolute -right-4 -bottom-4 top-4 left-0 bg-emerald-400 -z-10" />
 				</a>
 			</h1>
-			<div class="max-w-lg">
+			<div class="max-w-lg relative -top-1">
 				<span class="subtitle font-mono text-xl bg-white p-2 leading-relaxed top-0.5"
 					>{subtitle}</span
 				>
 			</div>
 		</div>
 	</div>
-	<div class="navigation pt-8">
+	<div class="navigation pt-8 pl-4">
 		<nav class="sticky top-7">
 			<h2 class="font-mono font-medium uppercase text-sm mb-2 tracking-wider">Sections</h2>
 			<ul>
@@ -152,7 +152,7 @@
 			</ul>
 		</nav>
 	</div>
-	<div class="main-img relative -z-10" style={`top: ${y * 0.3}px`}>
+	<div class="main-img relative " style={`top: ${y * 0.3}px`}>
 		<div class="overflow-hidden w-full h-full">
 			<div
 				class="inner-img relative bg-center rounded-bl-lg w-full h-full"
@@ -160,7 +160,12 @@
 			/>
 		</div>
 		<div class="ext-right font-mono text-xs absolute -bottom-5 right-2">
-			{#if imgAttributionAuthor}<a class="text-zinc-800" href={imgAttributionLink}>Image</a> by {imgAttributionAuthor}{/if}
+			{#if imgAttributionAuthor}<a
+					class="text-zinc-800 underline"
+					target="__blank"
+					href={imgAttributionLink}>Image</a
+				>
+				by {imgAttributionAuthor}{/if}
 		</div>
 	</div>
 	<div class="content bg-white pt-8 rounded-tr-lg pr-8 relative">

@@ -13,11 +13,14 @@
 <script>
 	import Newsletter from '../components/Newsletter.svelte';
 	import FeatureCard from '../components/FeatureCard.svelte';
+	import MainGraphic from '../components/MainGraphic.svelte';
+	import { fade } from 'svelte/transition';
 	let y;
 </script>
 
 <svelte:head>
-	<title>{SITE_TITLE}</title>
+	<!-- <title>{SITE_TITLE}</title> -->
+	<title>John Britti — Portfolio</title>
 	<link rel="canonical" href={SITE_URL} />
 	<link rel="alternate" type="application/rss+xml" href={SITE_URL + '/api/rss.xml'} />
 	<meta property="og:url" content={SITE_URL} />
@@ -35,28 +38,75 @@
 
 <svelte:window bind:scrollY={y} />
 
-<div
-	class="main grid place-content-center text-center leading-none text-9xl uppercase italic font-serif font-black h-screen gap-3 fixed top-0 left-0 right-0 bottom-0"
->
-	<h1>Research</h1>
-	<h1>Development</h1>
-	<h1>Design</h1>
-	<!-- <div
-		class="shade absolute top-0 left-0 right-0 bottom-0"
-		style={`backdrop-filter: blur(${
-			Math.min((5 * y) / window.innerHeight, 1) * 50
-		}px); background-color: rgba(255, 255, 255, ${(y / window.innerHeight) * 0.1});`}
-	/> -->
-</div>
-<div class="description mb-36">
-	<p>Hi, I'm John, a Developer turned designer turned researcher</p>
-</div>
+<section out:fade>
+	<div class="graphic__container">
+		<div class="graphic__align"><MainGraphic /></div>
+	</div>
+	<div class="about">
+		<div class="large">
+			<p>Hi, I'm John</p>
+		</div>
+		<div>
+			<p class="my-4">I'm a designer, user researcher, and web developer located in Atlanta, GA.</p>
+			<p class="my-4">
+				Good design requires creative ambition and the technical competence to execute on vision, it
+				calls for professionalism in application of ethics, and above all it demands compassion and
+				rigor in the understanding of our fellow man.
+			</p>
+		</div>
+	</div>
+</section>
 
 <style>
-	.main {
-		z-index: -1;
+	.graphic__container {
+		/* position: relative; */
+		width: 100%;
+		overflow: hidden;
+		height: 100vh;
+		position: fixed;
+		z-index: -10;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		/* pointer-events: none; */
 	}
-	.description {
-		margin-top: 100vh;
+	.graphic__align {
+		position: relative;
+		width: 10000px;
+		left: 50%;
+		margin: 0 0 0 -5000px;
+		text-align: center;
+	}
+	.graphic__align > :global(.main-graphic) {
+		height: 100vh;
+	}
+	@media screen and (max-width: 960px) {
+		.graphic__align > :global(.main-graphic) :global(.text) {
+			width: 150vw;
+		}
+	}
+	.about {
+		margin-top: 110vh;
+		display: flex;
+		/* align-items: center; */
+		justify-content: center;
+		margin-bottom: 40vh;
+		padding: 60px;
+		gap: 20px;
+	}
+	.about > div {
+		max-width: 500px;
+		flex: 1;
+	}
+	.about > div:first-child {
+		text-align: center;
+	}
+	.large {
+		font-size: 60px;
+		font-weight: 700;
+	}
+	.large p {
+		margin: 40px 0;
 	}
 </style>
