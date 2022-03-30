@@ -76,8 +76,7 @@
 <div class="main-graphic">
 	<svg
 		class="splotches bottom"
-		width="1728"
-		height="1117"
+		height="100%"
 		viewBox="0 0 1728 1117"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
@@ -700,8 +699,7 @@
 	</svg>
 	<svg
 		class="main-text"
-		width="1728"
-		height="1117"
+		height="100%"
 		viewBox="0 0 1728 1117"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
@@ -717,9 +715,8 @@
 		>
 	</svg>
 	<svg
-		class="splotches bottom"
-		width="1728"
-		height="1117"
+		class="splotches top"
+		height="100%"
 		viewBox="0 0 1728 1117"
 		fill="none"
 		xmlns="http://www.w3.org/2000/svg"
@@ -1148,7 +1145,7 @@
 	.black {
 		fill: rgb(0 0 0);
 	}
-	@media screen and (max-width: 960px) {
+	@media screen and (max-aspect-ratio: 920/873) {
 		.main-text {
 			width: 150vw;
 		}
