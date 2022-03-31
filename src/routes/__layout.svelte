@@ -4,7 +4,7 @@
 	export async function load({ url }) {
 		return {
 			props: {
-				origin: url.origin
+				url
 			}
 		};
 	}
@@ -12,9 +12,10 @@
 
 <script>
 	import '../tailwind.css';
-	import Nav from '../components/Nav.svelte';
-	export let origin = '';
+	export let url;
 	import { highlight } from '../components/hoverHighlight';
+
+	let y, innerHeight;
 
 	import { spring } from 'svelte/motion';
 
@@ -29,23 +30,29 @@
 	function mouseMove(event) {
 		pos.set({ x: event.clientX, y: event.clientY });
 	}
+
+	$: hideExtra = url.pathname !== '/' || y > innerHeight * 0.4;
 </script>
 
-<svelte:window on:mousemove={mouseMove} />
+<svelte:window on:mousemove={mouseMove} bind:scrollY={y} bind:innerHeight />
 
 <header class="fixed left-4 right-4 top-4 flex justify-between text-zinc-800 z-50">
-	<div class="text-xl p-4"><a href="/" class="text-zinc-800">John Britti</a></div>
+	<div class="text-xl p-4">
+		<a href="/" class="text-zinc-800 hideable" class:hide={hideExtra}>John Britti</a>
+	</div>
 	<div class="flex items-center gap-4 bg-white p-4 rounded-md">
 		<a
 			href="/"
 			class="text-zinc-800"
 			on:mouseenter={() => highlight.set(true)}
+			on:click={() => highlight.set(false)}
 			on:mouseleave={() => highlight.set(false)}>Home</a
 		>
 		<a
 			href="/work"
 			class="text-zinc-800"
 			on:mouseenter={() => highlight.set(true)}
+			on:click={() => highlight.set(false)}
 			on:mouseleave={() => highlight.set(false)}>Work</a
 		>
 		<!-- <a
@@ -59,6 +66,7 @@
 			target="_blank"
 			class="text-zinc-800"
 			on:mouseenter={() => highlight.set(true)}
+			on:click={() => highlight.set(false)}
 			on:mouseleave={() => highlight.set(false)}>Resume</a
 		>
 	</div>
@@ -74,8 +82,8 @@
 	<slot />
 </main>
 
-<footer class="fixed left-8 right-8 bottom-8 flex justify-between">
-	<div class="text-xl">Portfolio 2020</div>
+<footer class="fixed left-8 right-8 bottom-8 flex justify-between pointer-events-none">
+	<div class="hideable text-xl" class:hide={hideExtra}>Portfolio 2020</div>
 	<div class="flex gap-1.5 items-end">
 		<div class="bg-red-500 w-2.5 h-2.5" />
 		<div class="bg-amber-200 w-2.5 h-2.5" />
@@ -111,5 +119,11 @@
 		height: var(--highlight-radius);
 		top: calc(var(--highlight-radius) * -0.5);
 		left: calc(var(--highlight-radius) * -0.5);
+	}
+	.hideable {
+		transition: opacity 0.5s ease;
+	}
+	.hideable.hide {
+		opacity: 0;
 	}
 </style>

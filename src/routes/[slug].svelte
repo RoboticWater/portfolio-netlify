@@ -3,7 +3,6 @@
 	import * as cheerio from 'cheerio';
 	export const hydrate = true;
 	import { REPO_URL, SITE_URL } from '$lib/siteConfig';
-	import Comments from '../components/Comments.svelte';
 	export async function load({ url, params, fetch }) {
 		const slug = params.slug;
 		try {
@@ -49,7 +48,6 @@
 
 	import 'prism-themes/themes/prism-shades-of-purple.min.css';
 	import MetaList from '../components/MetaList.svelte';
-	import Reactions from '../components/Reactions.svelte';
 
 	export let json = {};
 	let title = json.title;
@@ -125,7 +123,7 @@
 			<h1 class="italic font-serif font-black text-zinc-800 text-7xl mb-8">
 				<a href="#description" class="py-2 pr-5 bg-white relative">
 					{title}
-					<span class="absolute -right-4 -bottom-4 top-4 left-0 bg-emerald-400 -z-10" />
+					<span class="absolute -right-4 -bottom-4 top-4 left-0 bg-blue-500 -z-10" />
 				</a>
 			</h1>
 			<div class="max-w-lg relative -top-1">

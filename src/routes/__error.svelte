@@ -7,7 +7,6 @@
 </script>
 
 <script>
-	import Nav from '../components/Nav.svelte';
 	import { dev } from '$app/env';
 
 	export let status;

@@ -34,9 +34,9 @@
 		height: 440px;
 	}
 	.image {
-		transition: transform 0.3s cubic-bezier(0.26, 0.47, 0.04, 0.96);
+		transition: transform 0.5s cubic-bezier(0.26, 0.47, 0.04, 0.96);
 	}
 	a:hover .image {
-		transform: scale(1.05);
+		transform: scale(1.08);
 	}
 </style>
