@@ -21,18 +21,27 @@
 <script>
 	import IndexCard from '../components/IndexCard.svelte';
 	import WorkItem from '../components/WorkItem.svelte';
+	import { fade, fly, crossfade, slide } from 'svelte/transition';
+	import { sineInOut, quadInOut } from 'svelte/easing';
 
 	export let page;
 	export let list;
-	export let items;
+	export let items = { list: [] };
+
+	const [send, receive] = crossfade({
+		duration: 200,
+		fallback: fly
+	});
+
+	let currentDescription = ['', '', ''];
 
 	const PAGE_SIZE = 30;
-
 	$: start = 1 + (page - 1) * PAGE_SIZE;
 	$: next = `/${list}/${+page + 1}`;
 
 	let isTruncated = items.list.length > 20;
 	let search;
+	let charSplit = 20;
 	$: list = items.list
 		.filter((item) => {
 			if (search) {
@@ -41,6 +50,21 @@
 			return true;
 		})
 		.slice(0, isTruncated ? 2 : items.list.length);
+
+	function setDescription(description) {
+		currentDescription = description;
+	}
+	function splitDescription(description) {
+		return description.split(' ').reduce((acc, cur, i) => {
+			if (i === 0) return [cur];
+			if (acc[acc.length - 1].length > charSplit) {
+				return [...acc, cur];
+			} else {
+				acc[acc.length - 1] += ' ' + cur;
+				return acc;
+			}
+		}, []);
+	}
 </script>
 
 <svelte:head>
@@ -48,48 +72,81 @@
 	<meta name="description" content="Latest Hacker News stories in the {list} category" />
 </svelte:head>
 
-<section class="flex">
-	{#if list.length}
-		<WorkItem href={list[0].slug} title={list[0].title} img={list[0].data.img} />
-		<div class="flex-1 grid content-center justify-center font-bold text-5xl">
-			<div class="description">{list[0].subtitle}</div>
+<section class="grid grid-cols-3 gap-8">
+	<div class="work-col flex flex-col gap-8 work-col-1 my-4">
+		<div
+			on:mouseenter={() => setDescription(splitDescription(list[0].subtitle))}
+			on:mouseleave={() => {
+				currentDescription = ['', '', ''];
+			}}
+		>
+			<WorkItem href={list[0].slug} title={list[0].title} img={list[0].data.img} />
 		</div>
-	{/if}
-	<!-- <div class="flex flex-col">
-		{#if list.length}
-			<ul class="">
-				{#each list as item}
-					<li class="mb-8 text-lg">
-						<IndexCard
-							href={item.slug}
-							title={item.title}
-							date={new Date(item.date).toISOString().slice(0, 10)}
-							ghMetadata={item.ghMetadata}
-						>
-							{item.description}
-						</IndexCard>
-					</li>
-				{/each}
-			</ul>
-			{#if isTruncated}
-				<div class="flex justify-center">
-					<button
-						on:click={() => (isTruncated = false)}
-						class="inline-block text-lg font-bold tracking-tight text-black md:text-2xl dark:text-white bg-blue-100 dark:bg-blue-900 rounded p-4 hover:text-yellow-900 hover:dark:text-yellow-200"
-					>
-						Load More Posts...
-					</button>
-				</div>
-			{/if}
-		{/if}
+		<div class="image-container grid overflow-hidden rounded-xl border-zinc-800 border" />
 	</div>
-	<div class="flex">
-		{0}
-	</div> -->
+	<div class="work-col flex flex-col work-col-2 gap-8">
+		<div class="image-container grid overflow-hidden rounded-xl border-zinc-800 border" />
+		<div
+			on:mouseenter={() => {
+				currentDescription = ['This is a test', 'of the description', 'animation'];
+			}}
+			on:mouseleave={() => {
+				currentDescription = ['', '', ''];
+			}}
+		>
+			<WorkItem href={list[0].slug} title={list[0].title} img={list[0].data.img} />
+		</div>
+	</div>
+	<div class="description grid font-semibold">
+		<div class="self-center">
+			{#each currentDescription as line, i}
+				<div class="line relative overflow-hidden">
+					{#key currentDescription[i]}
+						<div
+							class="absolute left-0 bg-white text-5xl"
+							out:fly|local={{ y: 54, delay: i * 100, duration: 350, easing: sineInOut }}
+							in:fly={{ y: -54, delay: i * 100, duration: 350, easing: quadInOut }}
+						>
+							{line}
+						</div>
+					{/key}&#160;
+				</div>
+			{/each}
+		</div>
+	</div>
 </section>
 
 <style>
 	section {
-		padding: 0 220px 0 220px;
+		padding-left: 100px;
+		grid-template-columns: 360px 360px 1fr;
 	}
+	.image-container {
+		height: 440px;
+	}
+	.work-col {
+		/* gap: 20px; */
+		position: relative;
+	}
+	.work-col-1 {
+		/* animation: column0-intro 0.5s cubic-bezier(0.28, 0.4, 0.12, 0.96); */
+	}
+	.work-col-2 {
+		margin-top: -220px;
+	}
+	.description {
+		height: 100vh;
+		padding-left: 40px;
+	}
+	.line {
+		line-height: 54px;
+	}
+	/* @keyframes column0-intro {
+		0% {
+			margin-top: 300px;
+		}
+		100% {
+			margin-top: 16px;
+		}
+	} */
 </style>
