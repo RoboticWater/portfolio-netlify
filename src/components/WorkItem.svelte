@@ -9,7 +9,7 @@
 
 <a sveltekit:prefetch class="work-item my-3" {href}>
 	<div
-		class="image-container grid overflow-hidden rounded-xl border-zinc-800 mb-3"
+		class="image-container grid overflow-hidden rounded-md  border-zinc-800 mb-3"
 		class:border={!img}
 	>
 		<div class="image bg-cover bg-center" style={`background-image: url(${img})`} />
@@ -29,6 +29,7 @@
 <style>
 	.work-item {
 		max-width: 400px;
+		display: block;
 	}
 	.image-container {
 		height: 440px;

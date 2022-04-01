@@ -29,49 +29,18 @@
 </script>
 
 <script>
-	import { fly } from 'svelte/transition';
-	import { sineInOut, quadInOut } from 'svelte/easing';
-
+	import { format, parse } from 'date-fns';
 	import MainGraphic from '../components/MainGraphic.svelte';
-	import WorkItem from '../components/WorkItem.svelte';
 
 	export let items = { list: [] };
-
-	let currentDescription = ['', '', ''];
-
-	let isTruncated = items.list.length > 20;
-	let search;
-	let charSplit = 20;
-	$: list = items.list
-		.filter((item) => {
-			if (search) {
-				return item.title.toLowerCase().includes(search.toLowerCase());
-			}
-			return true;
-		})
-		.slice(0, isTruncated ? 2 : items.list.length);
-
-	function setDescription(description) {
-		currentDescription = description;
-	}
-	function splitDescription(description) {
-		return description.split(' ').reduce((acc, cur, i) => {
-			if (i === 0) return [cur];
-			if (acc[acc.length - 1].length > charSplit) {
-				return [...acc, cur];
-			} else {
-				acc[acc.length - 1] += ' ' + cur;
-				return acc;
-			}
-		}, []);
-	}
+	console.log(items);
+	$: list = [...items.list, ...items.list, ...items.list];
 
 	let y;
 </script>
 
 <svelte:head>
-	<!-- <title>{SITE_TITLE}</title> -->
-	<title>John Britti — Portfolio</title>
+	<title>{SITE_TITLE}</title>
 	<link rel="canonical" href={SITE_URL} />
 	<link rel="alternate" type="application/rss+xml" href={SITE_URL + '/api/rss.xml'} />
 	<meta property="og:url" content={SITE_URL} />
@@ -89,107 +58,53 @@
 
 <svelte:window bind:scrollY={y} />
 
-<section>
+<section class="pb-48">
 	<div
 		class="graphic__container pointer-events-none w-full overflow-hidden fixed -z-10 top-0 left-0 right-0 bottom-0"
 	>
 		<div class="graphic__align relative left-1/2 text-center"><MainGraphic /></div>
 	</div>
-	<div id="about" class="flex flex-wrap justify-center p-16 gap-8">
-		<div>
-			<p class="mt-8 text-6xl font-bold">Hi, I'm John</p>
-		</div>
-		<div class="text-xl">
-			<p class="my-4">I'm a designer, user researcher, and web developer located in Atlanta, GA.</p>
-			<p class="my-4">
-				Good design requires creative ambition and the technical competence to execute on vision, it
-				calls for professionalism in application of ethics and discussion, and above all it demands
-				compassion and rigor in the understanding of our fellow man.
-			</p>
-			<p class="my-4">
-				These are the qualities that I believe I can bring to you venture, whatever it may be.
-			</p>
+	<div id="about" class="flex justify-center">
+		<div class="p-4 flex flex-wrap justify-center gap-8 max-w-5xl">
+			<div class="about-content flex-1">
+				<p class="mt-8 text-6xl font-bold">Hi, I'm John</p>
+			</div>
+			<div class="about-content text-xl flex-1">
+				<p class="my-4">
+					I'm a designer, user researcher, and web developer located in Atlanta, GA.
+				</p>
+				<p class="my-4">
+					Good design requires creative ambition and the technical competence to execute on vision,
+					it calls for professionalism in application of ethics and discussion, and above all it
+					demands compassion and rigor in the understanding of our fellow man.
+				</p>
+				<p class="my-4">
+					These are the qualities that I believe I can bring to you venture, whatever it may be.
+				</p>
+			</div>
 		</div>
 	</div>
-	<div id="work" class="gap-8">
-		<div class="work-items flex-1 justify-self-end">
+	<div id="work" class="flex justify-center">
+		<div class="grid p-4 gap-4 max-w-5xl w-full">
 			{#each list as item}
-				<div
-					on:mouseenter={() => {
-						currentDescription = splitDescription(item.subtitle);
-					}}
-					on:mouseleave={() => {
-						currentDescription = ['', '', ''];
-					}}
-				>
-					<WorkItem href={item.slug} title={item.title} img={item.data.img} />
-				</div>
-			{/each}
-			{#each list as item}
-				<div
-					on:mouseenter={() => {
-						currentDescription = splitDescription(item.subtitle);
-					}}
-					on:mouseleave={() => {
-						currentDescription = ['', '', ''];
-					}}
-				>
-					<WorkItem href={item.slug} title={item.title} img={item.data.img} />
-				</div>
-			{/each}
-
-			{#each list as item}
-				<div
-					on:mouseenter={() => {
-						currentDescription = splitDescription(item.subtitle);
-					}}
-					on:mouseleave={() => {
-						currentDescription = ['', '', ''];
-					}}
-				>
-					<WorkItem href={item.slug} title={item.title} img={item.data.img} />
-				</div>
-			{/each}
-
-			{#each list as item}
-				<div
-					on:mouseenter={() => {
-						currentDescription = splitDescription(item.subtitle);
-					}}
-					on:mouseleave={() => {
-						currentDescription = ['', '', ''];
-					}}
-				>
-					<WorkItem href={item.slug} title={item.title} img={item.data.img} />
-				</div>
-			{/each}
-
-			{#each list as item}
-				<div
-					on:mouseenter={() => {
-						currentDescription = splitDescription(item.subtitle);
-					}}
-					on:mouseleave={() => {
-						currentDescription = ['', '', ''];
-					}}
-				>
-					<WorkItem href={item.slug} title={item.title} img={item.data.img} />
-				</div>
-			{/each}
-		</div>
-		<div class="description sticky flex-1 font-semibold flex flex-col justify-center">
-			{#each currentDescription as line, i}
-				<div class="line relative overflow-hidden h-12">
-					{#key currentDescription[i]}
+				<a sveltekit:prefetch class="work-item flex flex-col cursor-pointer" href={item.slug}>
+					<div class="grid overflow-hidden h-96 rounded-md mb-2">
 						<div
-							class="absolute left-0 bg-white text-5xl"
-							out:fly|local={{ y: 54, delay: i * 100, duration: 400, easing: sineInOut }}
-							in:fly={{ y: -54, delay: i * 100, duration: 400, easing: quadInOut }}
-						>
-							{line}
+							class="image bg-cover bg-center"
+							style={`background-image: url(${item.data.img})`}
+						/>
+					</div>
+					<h2 class="text-4xl italic font-serif font-black text-zinc-800 mb-1">{item.title}</h2>
+					<div class="flex items-center gap-2 text-zinc-800 text-mono">
+						<div>
+							{format(parse(item.data.date, 'yyyy-MM-dd', new Date()), 'yyyy')}
 						</div>
-					{/key}&#160;
-				</div>
+						<div class="w-1 h-1 rounded bg-zinc-800" />
+						<div>{item.data.type}</div>
+						<div class="w-1 h-1 rounded bg-zinc-800" />
+						<div>{item.data.result}</div>
+					</div>
+				</a>
 			{/each}
 		</div>
 	</div>
@@ -198,6 +113,7 @@
 <style>
 	section {
 		animation: fade-section 800ms cubic-bezier(0.33, 0.43, 0.04, 0.97);
+		scroll-behavior: smooth;
 	}
 	.graphic__container {
 		height: 100vh;
@@ -214,27 +130,32 @@
 		margin-top: 110vh;
 		margin-bottom: 200px;
 	}
-	#about > div {
-		max-width: 500px;
-		min-width: 250px;
-		flex: 1;
-	}
-	#work {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		padding-bottom: 2000px;
+	#work > div {
+		grid-template-columns: repeat(auto-fit, minmax(324px, 1fr));
 	}
 	.description {
 		height: 440px;
 		top: 30vh;
 	}
+	.about-content {
+		min-width: 324px;
+	}
 	.work-items {
-		display: flex;
+		/* display: flex;
 		flex-direction: column;
 		justify-self: center;
 		gap: 24px;
-		margin-left: auto;
+		margin-left: auto; */
 		/* grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); */
+	}
+	.work-items > div {
+		display: inline;
+	}
+	.image {
+		transition: transform 0.5s cubic-bezier(0.26, 0.47, 0.04, 0.96);
+	}
+	a:hover .image {
+		transform: scale(1.08);
 	}
 	/* .work-items > div:nth-child(odd) {
 		position: relative;

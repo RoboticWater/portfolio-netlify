@@ -4,118 +4,116 @@
 
 	let splotchAnimation, textAnimation;
 	let scrollY, innerHeight;
-	$: if (scrollY) {
-		splotchAnimation.seek(splotchAnimation.duration * (scrollY / innerHeight) * 1.8);
-		textAnimation.seek(textAnimation.duration * (scrollY / innerHeight) * 3);
-	}
+	// $: if (scrollY) {
+	// 	// 	splotchAnimation.seek(splotchAnimation.duration * (scrollY * 4 / innerHeight) * 1.8);
+	// 	textAnimation.seek(textAnimation.duration * (scrollY / innerHeight) * 3);
+	// }
 
 	let midX = 1728 / 2,
 		midY = 1117 / 2;
 	onMount(() => {
-		// anime({
-		// 	targets: '.splotches use',
-		// 	translateX: (el) => {
-		// 		let [_, value] = el
-		// 			.getAttribute('transform')
-		// 			.match(/translate\((-?\d*\.?\d*),\s-?\d*\.?\d*\)/);
-		// 		return [value, value];
-		// 	},
-		// 	translateY: (el) => {
-		// 		let [_, value] = el
-		// 			.getAttribute('transform')
-		// 			.match(/translate\(-?\d*\.?\d*,\s(-?\d*\.?\d*)\)/);
-		// 		return [value, value];
-		// 	},
-		// 	rotate: (el) => {
-		// 		let [_, value] = el.getAttribute('transform').match(/rotate\((-?\d*\.?\d*)\)/);
-		// 		return [value, value];
-		// 	},
-		// 	scale: (el) => {
-		// 		let [_, value] = el.getAttribute('transform').match(/scale\((-?\d*\.?\d*)\)/);
-		// 		// console.log();
-		// 		if (el.className.baseVal.includes('shrink')) value /= 1.5;
-		// 		return [0, value];
-		// 	},
-		// 	// opacity: [1, 0],
-		// 	// translateX: 200,
-		// 	delay: function (el, i) {
-		// 		const match = el
-		// 			.getAttribute('transform')
-		// 			.match(/translate\((-?\d*\.?\d*),\s(-?\d*\.?\d*)\)/);
-
-		// 		if (match) {
-		// 			let [_, x, y] = match;
-		// 			// console.log(match, x, y, Math.pow(x - midX, 2), Math.pow(y - midY, 2));
-		// 			let dist = Math.sqrt(Math.pow(x - midX, 2) + Math.pow(y - midY, 2));
-		// 			return dist * 1.1;
-		// 		} else {
-		// 			return 0;
-		// 		}
-		// 	},
+		// 	// anime({
+		// 	// 	targets: '.splotches use',
+		// 	// 	translateX: (el) => {
+		// 	// 		let [_, value] = el
+		// 	// 			.getAttribute('transform')
+		// 	// 			.match(/translate\((-?\d*\.?\d*),\s-?\d*\.?\d*\)/);
+		// 	// 		return [value, value];
+		// 	// 	},
+		// 	// 	translateY: (el) => {
+		// 	// 		let [_, value] = el
+		// 	// 			.getAttribute('transform')
+		// 	// 			.match(/translate\(-?\d*\.?\d*,\s(-?\d*\.?\d*)\)/);
+		// 	// 		return [value, value];
+		// 	// 	},
+		// 	// 	rotate: (el) => {
+		// 	// 		let [_, value] = el.getAttribute('transform').match(/rotate\((-?\d*\.?\d*)\)/);
+		// 	// 		return [value, value];
+		// 	// 	},
+		// 	// 	scale: (el) => {
+		// 	// 		let [_, value] = el.getAttribute('transform').match(/scale\((-?\d*\.?\d*)\)/);
+		// 	// 		// console.log();
+		// 	// 		if (el.className.baseVal.includes('shrink')) value /= 1.5;
+		// 	// 		return [0, value];
+		// 	// 	},
+		// 	// 	// opacity: [1, 0],
+		// 	// 	// translateX: 200,
+		// 	// 	delay: function (el, i) {
+		// 	// 		const match = el
+		// 	// 			.getAttribute('transform')
+		// 	// 			.match(/translate\((-?\d*\.?\d*),\s(-?\d*\.?\d*)\)/);
+		// 	// 		if (match) {
+		// 	// 			let [_, x, y] = match;
+		// 	// 			// console.log(match, x, y, Math.pow(x - midX, 2), Math.pow(y - midY, 2));
+		// 	// 			let dist = Math.sqrt(Math.pow(x - midX, 2) + Math.pow(y - midY, 2));
+		// 	// 			return dist * 1.1;
+		// 	// 		} else {
+		// 	// 			return 0;
+		// 	// 		}
+		// 	// 	},
+		// 	// 	elasticity: 200,
+		// 	// 	duration: 150,
+		// 	// 	easing: 'easeInOutSine'
+		// 	// });
+		// 	splotchAnimation = anime({
+		// 		targets: '.splotches use',
+		// 		translateX: (el) => {
+		// 			let [_, value] = el
+		// 				.getAttribute('transform')
+		// 				.match(/translate\((-?\d*\.?\d*),\s-?\d*\.?\d*\)/);
+		// 			return [value, value];
+		// 		},
+		// 		translateY: (el) => {
+		// 			let [_, value] = el
+		// 				.getAttribute('transform')
+		// 				.match(/translate\(-?\d*\.?\d*,\s(-?\d*\.?\d*)\)/);
+		// 			return [value, value];
+		// 		},
+		// 		rotate: (el) => {
+		// 			let [_, value] = el.getAttribute('transform').match(/rotate\((-?\d*\.?\d*)\)/);
+		// 			return [value, value];
+		// 		},
+		// 		scale: (el) => {
+		// 			let [_, value] = el.getAttribute('transform').match(/scale\((-?\d*\.?\d*)\)/);
+		// 			// console.log();
+		// 			if (el.className.baseVal.includes('shrink')) value /= 1.5;
+		// 			return [value, 0];
+		// 		},
+		// 		// opacity: [1, 0],
+		// 		// translateX: 200,
+		// 		delay: function (el, i) {
+		// 			const match = el
+		// 				.getAttribute('transform')
+		// 				.match(/translate\((-?\d*\.?\d*),\s(-?\d*\.?\d*)\)/);
+		// 			if (match) {
+		// 				let [_, x, y] = match;
+		// 				// console.log(match, x, y, Math.pow(x - midX, 2), Math.pow(y - midY, 2));
+		// 				let dist = Math.sqrt(Math.pow(x - midX, 2) + Math.pow(y - midY, 2));
+		// 				return dist;
+		// 			} else {
+		// 				return 0;
+		// 			}
+		// 		},
+		// 		elasticity: 200,
+		// 		easing: 'easeInOutSine',
+		// 		autoplay: false
+		// 	});
+		// textAnimation = anime({
+		// 	targets: '.main-text',
+		// 	translateX: ['-50%', '-50%'],
+		// 	translateY: ['-50%', '-50%'],
+		// 	scale: [1, 0.65],
+		// 	opacity: [1, 0],
 		// 	elasticity: 200,
-		// 	duration: 150,
-		// 	easing: 'easeInOutSine'
+		// 	easing: 'easeInOutSine',
+		// 	autoplay: false
 		// });
-		splotchAnimation = anime({
-			targets: '.splotches use',
-			translateX: (el) => {
-				let [_, value] = el
-					.getAttribute('transform')
-					.match(/translate\((-?\d*\.?\d*),\s-?\d*\.?\d*\)/);
-				return [value, value];
-			},
-			translateY: (el) => {
-				let [_, value] = el
-					.getAttribute('transform')
-					.match(/translate\(-?\d*\.?\d*,\s(-?\d*\.?\d*)\)/);
-				return [value, value];
-			},
-			rotate: (el) => {
-				let [_, value] = el.getAttribute('transform').match(/rotate\((-?\d*\.?\d*)\)/);
-				return [value, value];
-			},
-			scale: (el) => {
-				let [_, value] = el.getAttribute('transform').match(/scale\((-?\d*\.?\d*)\)/);
-				// console.log();
-				if (el.className.baseVal.includes('shrink')) value /= 1.5;
-				return [value, 0];
-			},
-			// opacity: [1, 0],
-			// translateX: 200,
-			delay: function (el, i) {
-				const match = el
-					.getAttribute('transform')
-					.match(/translate\((-?\d*\.?\d*),\s(-?\d*\.?\d*)\)/);
-
-				if (match) {
-					let [_, x, y] = match;
-					// console.log(match, x, y, Math.pow(x - midX, 2), Math.pow(y - midY, 2));
-					let dist = Math.sqrt(Math.pow(x - midX, 2) + Math.pow(y - midY, 2));
-					return dist;
-				} else {
-					return 0;
-				}
-			},
-			elasticity: 200,
-			easing: 'easeInOutSine',
-			autoplay: false
-		});
-		textAnimation = anime({
-			targets: '.main-text',
-			translateX: ['-50%', '-50%'],
-			translateY: ['-50%', '-50%'],
-			scale: [1, 0.65],
-			opacity: [1, 0],
-			elasticity: 200,
-			easing: 'easeInOutSine',
-			autoplay: false
-		});
-		setTimeout(() => {
-			splotchAnimation.seek(
-				splotchAnimation.duration * (window.scrollY / window.innerHeight) * 1.8
-			);
-			textAnimation.seek(textAnimation.duration * (window.scrollY / window.innerHeight) * 3);
-		}, 1);
+		// 	setTimeout(() => {
+		// 		splotchAnimation.seek(
+		// 			splotchAnimation.duration * (window.scrollY / window.innerHeight) * 1.8
+		// 		);
+		// 		textAnimation.seek(textAnimation.duration * (window.scrollY / window.innerHeight) * 3);
+		// 	}, 1);
 	});
 </script>
 
@@ -144,689 +142,935 @@
 			/>
 		</defs>
 		<use
-			transform="translate(833.7142944335938, 583.5714263916016) rotate(344.5) scale(0.4)"
+			transform={`translate(833.7142944335938, 583.5714263916016) rotate(344.5) scale(${
+				(0.4 * Math.min(Math.max(1 - (scrollY * 4 - 39.316668004353396 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(799.7142944335938, 552.5714263916016) rotate(337.2) scale(0.38)"
+			transform={`translate(799.7142944335938, 552.5714263916016) rotate(337.2) scale(${
+				(0.38 * Math.min(Math.max(1 - (scrollY * 4 - 64.55850002285426 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(845.7142944335938, 506.57142639160156) rotate(20.5) scale(0.29)"
+			transform={`translate(845.7142944335938, 506.57142639160156) rotate(20.5) scale(${
+				(0.29 * Math.min(Math.max(1 - (scrollY * 4 - 55.05400789283333 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(834.7142944335938, 479.57142639160156) rotate(142.5) scale(0.49)"
+			transform={`translate(834.7142944335938, 479.57142639160156) rotate(142.5) scale(${
+				(0.49 * Math.min(Math.max(1 - (scrollY * 4 - 84.1865326663274 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(829.7142944335938, 563.5714263916016) rotate(76.9) scale(0.4)"
+			transform={`translate(829.7142944335938, 563.5714263916016) rotate(76.9) scale(${
+				(0.4 * Math.min(Math.max(1 - (scrollY * 4 - 34.65875029241149 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(874.7142944335938, 537.5714263916016) rotate(260.8) scale(0.34)"
+			transform={`translate(874.7142944335938, 537.5714263916016) rotate(260.8) scale(${
+				(0.34 * Math.min(Math.max(1 - (scrollY * 4 - 23.511726829220553 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(812.7142944335938, 516.5714263916016) rotate(284.5) scale(0.43)"
+			transform={`translate(812.7142944335938, 516.5714263916016) rotate(284.5) scale(${
+				(0.43 * Math.min(Math.max(1 - (scrollY * 4 - 66.24370823164264 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(878.7142944335938, 504.57142639160156) rotate(355.4) scale(0.28)"
+			transform={`translate(878.7142944335938, 504.57142639160156) rotate(355.4) scale(${
+				(0.28 * Math.min(Math.max(1 - (scrollY * 4 - 55.89992407968848 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-rose-500"
 		/>
 
 		<use
-			transform="translate(798.4285888671875, 241) rotate(91) scale(0.58)"
+			transform={`translate(798.4285888671875, 241) rotate(91) scale(${
+				(0.58 * Math.min(Math.max(1 - (scrollY * 4 - 324.2003392316984 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(827.4285888671875, 533.5714263916016) rotate(353.1) scale(0.58)"
+			transform={`translate(827.4285888671875, 533.5714263916016) rotate(353.1) scale(${
+				(0.58 * Math.min(Math.max(1 - (scrollY * 4 - 44.25948366615387 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(868.4285888671875, 395.57142639160156) rotate(111) scale(0.55)"
+			transform={`translate(868.4285888671875, 395.57142639160156) rotate(111) scale(${
+				(0.55 * Math.min(Math.max(1 - (scrollY * 4 - 162.9887496038358 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(959.4285888671875, 378.57142639160156) rotate(227.5) scale(0.36)"
+			transform={`translate(959.4285888671875, 378.57142639160156) rotate(227.5) scale(${
+				(0.36 * Math.min(Math.max(1 - (scrollY * 4 - 203.66862098500977 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(944.4285888671875, 350.57142639160156) rotate(189.3) scale(0.47)"
+			transform={`translate(944.4285888671875, 350.57142639160156) rotate(189.3) scale(${
+				(0.47 * Math.min(Math.max(1 - (scrollY * 4 - 222.94180772118594 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(995.4285888671875, 341.1428565979004) rotate(313.1) scale(0.47)"
+			transform={`translate(995.4285888671875, 341.1428565979004) rotate(313.1) scale(${
+				(0.47 * Math.min(Math.max(1 - (scrollY * 4 - 254.00315305039246 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1145.4285888671875, 272.1428565979004) rotate(283.9) scale(0.39)"
+			transform={`translate(1145.4285888671875, 272.1428565979004) rotate(283.9) scale(${
+				(0.39 * Math.min(Math.max(1 - (scrollY * 4 - 401.500266761041 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1160.4285888671875, 250.1428565979004) rotate(278.5) scale(0.47)"
+			transform={`translate(1160.4285888671875, 250.1428565979004) rotate(278.5) scale(${
+				(0.47 * Math.min(Math.max(1 - (scrollY * 4 - 427.73126631670857 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1269.4285888671875, 215.1428565979004) rotate(194.7) scale(0.52)"
+			transform={`translate(1269.4285888671875, 215.1428565979004) rotate(194.7) scale(${
+				(0.52 * Math.min(Math.max(1 - (scrollY * 4 - 531.2875573510911 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1088.4285888671875, 325) rotate(3.6) scale(0.29)"
+			transform={`translate(1088.4285888671875, 325) rotate(3.6) scale(${
+				(0.29 * Math.min(Math.max(1 - (scrollY * 4 - 323.8679383651878 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1157.8571166992188, 317) rotate(134.6) scale(0.36)"
+			transform={`translate(1157.8571166992188, 317) rotate(134.6) scale(${
+				(0.36 * Math.min(Math.max(1 - (scrollY * 4 - 380.360690706569 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1125.8571166992188, 348) rotate(120.1) scale(0.48)"
+			transform={`translate(1125.8571166992188, 348) rotate(120.1) scale(${
+				(0.48 * Math.min(Math.max(1 - (scrollY * 4 - 335.97529606509505 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1330.8571166992188, 137) rotate(218.4) scale(0.33)"
+			transform={`translate(1330.8571166992188, 137) rotate(218.4) scale(${
+				(0.33 * Math.min(Math.max(1 - (scrollY * 4 - 628.98157160024 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1297.8571166992188, 54) rotate(218.4) scale(0.36)"
+			transform={`translate(1297.8571166992188, 54) rotate(218.4) scale(${
+				(0.36 * Math.min(Math.max(1 - (scrollY * 4 - 665.3963087593435 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1400.2857055664062, 75) rotate(50.9) scale(0.47)"
+			transform={`translate(1400.2857055664062, 75) rotate(50.9) scale(${
+				(0.47 * Math.min(Math.max(1 - (scrollY * 4 - 722.0627451924508 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1460.2857055664062, 60) rotate(70.9) scale(0.67)"
+			transform={`translate(1460.2857055664062, 60) rotate(70.9) scale(${
+				(0.67 * Math.min(Math.max(1 - (scrollY * 4 - 777.2122571491182 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1490.2857055664062, 1) rotate(7.9) scale(0.97)"
+			transform={`translate(1490.2857055664062, 1) rotate(7.9) scale(${
+				(0.97 * Math.min(Math.max(1 - (scrollY * 4 - 838.4748266923768 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1330.2857055664062, 57) rotate(322.1) scale(0.52)"
+			transform={`translate(1330.2857055664062, 57) rotate(322.1) scale(${
+				(0.52 * Math.min(Math.max(1 - (scrollY * 4 - 684.7807015501834 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1302.2857055664062, 9) rotate(342.2) scale(0.44)"
+			transform={`translate(1302.2857055664062, 9) rotate(342.2) scale(${
+				(0.44 * Math.min(Math.max(1 - (scrollY * 4 - 702.8830697234374 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(918.8571166992188, 497.2857131958008) rotate(265.7) scale(0.3)"
+			transform={`translate(918.8571166992188, 497.2857131958008) rotate(265.7) scale(${
+				(0.3 * Math.min(Math.max(1 - (scrollY * 4 - 82.19788416679874 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(971.8571166992188, 316.57142639160156) rotate(218.4) scale(0.27)"
+			transform={`translate(971.8571166992188, 316.57142639160156) rotate(218.4) scale(${
+				(0.27 * Math.min(Math.max(1 - (scrollY * 4 - 264.8822235463587 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1141.8571166992188, 144) rotate(172.9) scale(0.32)"
+			transform={`translate(1141.8571166992188, 144) rotate(172.9) scale(${
+				(0.32 * Math.min(Math.max(1 - (scrollY * 4 - 499.0138548180835 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1217.8571166992188, 133) rotate(40) scale(0.2)"
+			transform={`translate(1217.8571166992188, 133) rotate(40) scale(${
+				(0.2 * Math.min(Math.max(1 - (scrollY * 4 - 553.4122414969554 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1366.7142944335938, 154) rotate(0) scale(0.26)"
+			transform={`translate(1366.7142944335938, 154) rotate(0) scale(${
+				(0.26 * Math.min(Math.max(1 - (scrollY * 4 - 645.2456213163061 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1439.7142944335938, 110) rotate(87.3) scale(0.29)"
+			transform={`translate(1439.7142944335938, 110) rotate(87.3) scale(${
+				(0.29 * Math.min(Math.max(1 - (scrollY * 4 - 729.7939427092901 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1438.7142944335938, 23) rotate(69.1) scale(0.29)"
+			transform={`translate(1438.7142944335938, 23) rotate(69.1) scale(${
+				(0.29 * Math.min(Math.max(1 - (scrollY * 4 - 785.5296112982014 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1345.7142944335938, 20) rotate(240.2) scale(0.29)"
+			transform={`translate(1345.7142944335938, 20) rotate(240.2) scale(${
+				(0.29 * Math.min(Math.max(1 - (scrollY * 4 - 722.5170665539016 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1295.7142944335938, 128) rotate(152.9) scale(0.71)"
+			transform={`translate(1295.7142944335938, 128) rotate(152.9) scale(${
+				(0.71 * Math.min(Math.max(1 - (scrollY * 4 - 609.6781790570298 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1261.7142944335938, 191) rotate(29.1) scale(0.3)"
+			transform={`translate(1261.7142944335938, 191) rotate(29.1) scale(${
+				(0.3 * Math.min(Math.max(1 - (scrollY * 4 - 541.5098429362215 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1204.7142944335938, 248) rotate(171.1) scale(1.02)"
+			transform={`translate(1204.7142944335938, 248) rotate(171.1) scale(${
+				(1.02 * Math.min(Math.max(1 - (scrollY * 4 - 460.97340534067865 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1397.7142944335938, 12) rotate(351.3) scale(0.89)"
+			transform={`translate(1397.7142944335938, 12) rotate(351.3) scale(${
+				(0.89 * Math.min(Math.max(1 - (scrollY * 4 - 763.8803558691301 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1372.7142944335938, 52) rotate(45.5) scale(0.58)"
+			transform={`translate(1372.7142944335938, 52) rotate(45.5) scale(${
+				(0.58 * Math.min(Math.max(1 - (scrollY * 4 - 717.8666194782072 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1352.7142944335938, 104) rotate(314.9) scale(0.68)"
+			transform={`translate(1352.7142944335938, 104) rotate(314.9) scale(${
+				(0.68 * Math.min(Math.max(1 - (scrollY * 4 - 667.3918725784165 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1310.7142944335938, 89) rotate(231.1) scale(0.53)"
+			transform={`translate(1310.7142944335938, 89) rotate(231.1) scale(${
+				(0.53 * Math.min(Math.max(1 - (scrollY * 4 - 648.061656674196 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1250.7142944335938, 115) rotate(251.2) scale(0.44)"
+			transform={`translate(1250.7142944335938, 115) rotate(251.2) scale(${
+				(0.44 * Math.min(Math.max(1 - (scrollY * 4 - 588.4217836885989 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1293.7142944335938, 173) rotate(269.4) scale(1.03)"
+			transform={`translate(1293.7142944335938, 173) rotate(269.4) scale(${
+				(1.03 * Math.min(Math.max(1 - (scrollY * 4 - 577.2907628228269 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1231.7142944335938, 174) rotate(345.8) scale(0.7)"
+			transform={`translate(1231.7142944335938, 174) rotate(345.8) scale(${
+				(0.7 * Math.min(Math.max(1 - (scrollY * 4 - 532.0282439220645 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1252.7142944335938, 146) rotate(345.8) scale(0.24)"
+			transform={`translate(1252.7142944335938, 146) rotate(345.8) scale(${
+				(0.24 * Math.min(Math.max(1 - (scrollY * 4 - 566.7936597184257 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1184.7142944335938, 210) rotate(203.8) scale(0.7)"
+			transform={`translate(1184.7142944335938, 210) rotate(203.8) scale(${
+				(0.7 * Math.min(Math.max(1 - (scrollY * 4 - 473.6136702567166 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1220.7142944335938, 214) rotate(165.6) scale(0.41)"
+			transform={`translate(1220.7142944335938, 214) rotate(165.6) scale(${
+				(0.41 * Math.min(Math.max(1 - (scrollY * 4 - 495.90859828526527 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1173.7142944335938, 294) rotate(43.6) scale(0.41)"
+			transform={`translate(1173.7142944335938, 294) rotate(43.6) scale(${
+				(0.41 * Math.min(Math.max(1 - (scrollY * 4 - 407.28760621518893 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1139.7142944335938, 302) rotate(192.9) scale(0.45)"
+			transform={`translate(1139.7142944335938, 302) rotate(192.9) scale(${
+				(0.45 * Math.min(Math.max(1 - (scrollY * 4 - 376.577511483379 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1105.7142944335938, 305) rotate(149.2) scale(0.45)"
+			transform={`translate(1105.7142944335938, 305) rotate(149.2) scale(${
+				(0.45 * Math.min(Math.max(1 - (scrollY * 4 - 350.26854002826184 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1098.7142944335938, 360) rotate(327.6) scale(0.52)"
+			transform={`translate(1098.7142944335938, 360) rotate(327.6) scale(${
+				(0.52 * Math.min(Math.max(1 - (scrollY * 4 - 307.39721861373397 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1027.4285888671875, 327.1428565979004) rotate(283.9) scale(0.85)"
+			transform={`translate(1027.4285888671875, 327.1428565979004) rotate(283.9) scale(${
+				(0.85 * Math.min(Math.max(1 - (scrollY * 4 - 283.2578886144213 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1063.4285888671875, 335.1428565979004) rotate(329.5) scale(0.39)"
+			transform={`translate(1063.4285888671875, 335.1428565979004) rotate(329.5) scale(${
+				(0.39 * Math.min(Math.max(1 - (scrollY * 4 - 299.4330902994921 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(1037.4285888671875, 353.1428565979004) rotate(136.5) scale(0.24)"
+			transform={`translate(1037.4285888671875, 353.1428565979004) rotate(136.5) scale(${
+				(0.24 * Math.min(Math.max(1 - (scrollY * 4 - 268.7918000660259 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(978.4285888671875, 389.1428565979004) rotate(47.3) scale(0.29)"
+			transform={`translate(978.4285888671875, 389.1428565979004) rotate(47.3) scale(${
+				(0.29 * Math.min(Math.max(1 - (scrollY * 4 - 204.39115433759642 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(928.4285888671875, 390.1428565979004) rotate(287.6) scale(0.41)"
+			transform={`translate(928.4285888671875, 390.1428565979004) rotate(287.6) scale(${
+				(0.41 * Math.min(Math.max(1 - (scrollY * 4 - 180.26416947894057 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(895.2857055664062, 478.2857131958008) rotate(178.3) scale(0.53)"
+			transform={`translate(895.2857055664062, 478.2857131958008) rotate(178.3) scale(${
+				(0.53 * Math.min(Math.max(1 - (scrollY * 4 - 86.09951904798419 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(919.2857055664062, 438.2857131958008) rotate(69.1) scale(0.24)"
+			transform={`translate(919.2857055664062, 438.2857131958008) rotate(69.1) scale(${
+				(0.24 * Math.min(Math.max(1 - (scrollY * 4 - 132.31773876475378 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(876.2857055664062, 433.2857131958008) rotate(302.1) scale(0.3)"
+			transform={`translate(876.2857055664062, 433.2857131958008) rotate(302.1) scale(${
+				(0.3 * Math.min(Math.max(1 - (scrollY * 4 - 125.81556414509568 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(861.2857055664062, 485.2857131958008) rotate(145.6) scale(0.35)"
+			transform={`translate(861.2857055664062, 485.2857131958008) rotate(145.6) scale(${
+				(0.35 * Math.min(Math.max(1 - (scrollY * 4 - 73.2645834392019 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(803.2857055664062, 487.2857131958008) rotate(220.2) scale(0.38)"
+			transform={`translate(803.2857055664062, 487.2857131958008) rotate(220.2) scale(${
+				(0.38 * Math.min(Math.max(1 - (scrollY * 4 - 93.58258488415383 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(647.8000030517578, 4) rotate(0) scale(0.61)"
+			transform={`translate(647.8000030517578, 4) rotate(0) scale(${
+				(0.61 * Math.min(Math.max(1 - (scrollY * 4 - 595.1577006814412 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(621.8000030517578, 3) rotate(38.7) scale(0.36)"
+			transform={`translate(621.8000030517578, 3) rotate(38.7) scale(${
+				(0.36 * Math.min(Math.max(1 - (scrollY * 4 - 606.0041984357274 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(710.8000030517578, 136) rotate(38.7) scale(0.25)"
+			transform={`translate(710.8000030517578, 136) rotate(38.7) scale(${
+				(0.25 * Math.min(Math.max(1 - (scrollY * 4 - 449.4179447518105 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(679.8000030517578, 119) rotate(69.3) scale(0.74)"
+			transform={`translate(679.8000030517578, 119) rotate(69.3) scale(${
+				(0.74 * Math.min(Math.max(1 - (scrollY * 4 - 476.5394935110126 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(731.8000030517578, 156) rotate(31.1) scale(0.55)"
+			transform={`translate(731.8000030517578, 156) rotate(31.1) scale(${
+				(0.55 * Math.min(Math.max(1 - (scrollY * 4 - 423.6544455014195 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(693.3333282470703, 91) rotate(287.8) scale(0.42)"
+			transform={`translate(693.3333282470703, 91) rotate(287.8) scale(${
+				(0.42 * Math.min(Math.max(1 - (scrollY * 4 - 497.6779710286786 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(738.3333282470703, 225) rotate(340.9) scale(0.47)"
+			transform={`translate(738.3333282470703, 225) rotate(340.9) scale(${
+				(0.47 * Math.min(Math.max(1 - (scrollY * 4 - 356.3907439727617 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(764.3333282470703, 311) rotate(315.4) scale(0.82)"
+			transform={`translate(764.3333282470703, 311) rotate(315.4) scale(${
+				(0.82 * Math.min(Math.max(1 - (scrollY * 4 - 266.81397163249574 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(843.3333282470703, 322) rotate(238.9) scale(0.43)"
+			transform={`translate(843.3333282470703, 322) rotate(238.9) scale(${
+				(0.43 * Math.min(Math.max(1 - (scrollY * 4 - 237.4012664695438 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(893.3333282470703, 397) rotate(13.8) scale(0.45)"
+			transform={`translate(893.3333282470703, 397) rotate(13.8) scale(${
+				(0.45 * Math.min(Math.max(1 - (scrollY * 4 - 164.14229846706294 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(584.3333282470703, 21) rotate(13.8) scale(0.22)"
+			transform={`translate(584.3333282470703, 21) rotate(13.8) scale(${
+				(0.22 * Math.min(Math.max(1 - (scrollY * 4 - 605.9040330690669 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(776.3333282470703, -2) rotate(13.8) scale(0.22)"
+			transform={`translate(776.3333282470703, -2) rotate(13.8) scale(${
+				(0.22 * Math.min(Math.max(1 - (scrollY * 4 - 567.3144589522075 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(784.3333282470703, 69) rotate(62.6) scale(0.26)"
+			transform={`translate(784.3333282470703, 69) rotate(62.6) scale(${
+				(0.26 * Math.min(Math.max(1 - (scrollY * 4 - 495.94054944941644 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(718.3333282470703, 114) rotate(62.6) scale(0.26)"
+			transform={`translate(718.3333282470703, 114) rotate(62.6) scale(${
+				(0.26 * Math.min(Math.max(1 - (scrollY * 4 - 467.75958489332504 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(751.3333282470703, 134) rotate(336.6) scale(0.26)"
+			transform={`translate(751.3333282470703, 134) rotate(336.6) scale(${
+				(0.26 * Math.min(Math.max(1 - (scrollY * 4 - 439.197027453377 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(737.3333282470703, 182) rotate(336.6) scale(0.31)"
+			transform={`translate(737.3333282470703, 182) rotate(336.6) scale(${
+				(0.31 * Math.min(Math.max(1 - (scrollY * 4 - 397.236322272982 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(762.3333282470703, 204) rotate(58.4) scale(0.34)"
+			transform={`translate(762.3333282470703, 204) rotate(58.4) scale(${
+				(0.34 * Math.min(Math.max(1 - (scrollY * 4 - 368.7904040851903 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(727.3333282470703, 264) rotate(20.1) scale(0.79)"
+			transform={`translate(727.3333282470703, 264) rotate(20.1) scale(${
+				(0.79 * Math.min(Math.max(1 - (scrollY * 4 - 324.6660271232933 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(918.3333282470703, 167) rotate(209.2) scale(0.2)"
+			transform={`translate(918.3333282470703, 167) rotate(209.2) scale(${
+				(0.2 * Math.min(Math.max(1 - (scrollY * 4 - 395.2522745771413 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(808.3333282470703, 328) rotate(45.6) scale(0.31)"
+			transform={`translate(808.3333282470703, 328) rotate(45.6) scale(${
+				(0.31 * Math.min(Math.max(1 - (scrollY * 4 - 237.1266082582223 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(810.3333282470703, 366) rotate(296.2) scale(0.57)"
+			transform={`translate(810.3333282470703, 366) rotate(296.2) scale(${
+				(0.57 * Math.min(Math.max(1 - (scrollY * 4 - 199.84084081347513 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-blue-500"
 		/>
 
 		<use
-			transform="translate(827.3333282470703, 411) rotate(130.6) scale(0.43)"
+			transform={`translate(827.3333282470703, 411) rotate(130.6) scale(${
+				(0.43 * Math.min(Math.max(1 - (scrollY * 4 - 151.9891273000707 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(642, 42) rotate(97.4) scale(1)"
+			transform={`translate(642, 42) rotate(97.4) scale(${
+				(1 * Math.min(Math.max(1 - (scrollY * 4 - 562.1888028056055 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(705, 10) rotate(3.1) scale(0.23)"
+			transform={`translate(705, 10) rotate(3.1) scale(${
+				(0.23 * Math.min(Math.max(1 - (scrollY * 4 - 571.0807736213853 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(799, 422) rotate(249) scale(0.23)"
+			transform={`translate(799, 422) rotate(249) scale(${
+				(0.23 * Math.min(Math.max(1 - (scrollY * 4 - 151.1861435449691 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(888, 364) rotate(249) scale(0.57)"
+			transform={`translate(888, 364) rotate(249) scale(${
+				(0.57 * Math.min(Math.max(1 - (scrollY * 4 - 195.97512597266012 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(831, 287) rotate(79) scale(0.41)"
+			transform={`translate(831, 287) rotate(79) scale(${
+				(0.41 * Math.min(Math.max(1 - (scrollY * 4 - 273.4981718403251 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(766, 268) rotate(151.3) scale(0.41)"
+			transform={`translate(766, 268) rotate(151.3) scale(${
+				(0.41 * Math.min(Math.max(1 - (scrollY * 4 - 306.58481697566174 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(789, 222) rotate(140.6) scale(0.34)"
+			transform={`translate(789, 222) rotate(140.6) scale(${
+				(0.34 * Math.min(Math.max(1 - (scrollY * 4 - 344.75679833761075 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(816, 220) rotate(257.5) scale(0.3)"
+			transform={`translate(816, 220) rotate(257.5) scale(${
+				(0.3 * Math.min(Math.max(1 - (scrollY * 4 - 341.88631151305253 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(841, 225) rotate(40.8) scale(0.48)"
+			transform={`translate(841, 225) rotate(40.8) scale(${
+				(0.48 * Math.min(Math.max(1 - (scrollY * 4 - 334.29216263621856 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(830, 186) rotate(106.7) scale(0.78)"
+			transform={`translate(830, 186) rotate(106.7) scale(${
+				(0.78 * Math.min(Math.max(1 - (scrollY * 4 - 374.0484594273849 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(790, 182) rotate(327.5) scale(0.52)"
+			transform={`translate(790, 182) rotate(327.5) scale(${
+				(0.52 * Math.min(Math.max(1 - (scrollY * 4 - 383.70333592503465 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(764, 166) rotate(121.5) scale(0.39)"
+			transform={`translate(764, 166) rotate(121.5) scale(${
+				(0.39 * Math.min(Math.max(1 - (scrollY * 4 - 405.038578409514 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(698, 64) rotate(85.4) scale(0.64)"
+			transform={`translate(698, 64) rotate(85.4) scale(${
+				(0.64 * Math.min(Math.max(1 - (scrollY * 4 - 521.6188742750784 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(779, 94) rotate(15.3) scale(0.34)"
+			transform={`translate(779, 94) rotate(15.3) scale(${
+				(0.34 * Math.min(Math.max(1 - (scrollY * 4 - 472.21314043554526 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(684, 32) rotate(96) scale(0.46)"
+			transform={`translate(684, 32) rotate(96) scale(${
+				(0.46 * Math.min(Math.max(1 - (scrollY * 4 - 556.4191315905664 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(649, 78) rotate(327.5) scale(0.22)"
+			transform={`translate(649, 78) rotate(327.5) scale(${
+				(0.22 * Math.min(Math.max(1 - (scrollY * 4 - 526.4078741812284 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(682, -6) rotate(134.3) scale(0.57)"
+			transform={`translate(682, -6) rotate(134.3) scale(${
+				(0.57 * Math.min(Math.max(1 - (scrollY * 4 - 593.114027822644 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-blue-500"
 		/>
 		<use
-			transform="translate(1109.2857055664062, 334.2857131958008) rotate(52.7) scale(0.27)"
+			transform={`translate(1109.2857055664062, 334.2857131958008) rotate(52.7) scale(${
+				(0.27 * Math.min(Math.max(1 - (scrollY * 4 - 332.3208145186296 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(1115.2857055664062, 385.2857131958008) rotate(127.3) scale(0.27)"
+			transform={`translate(1115.2857055664062, 385.2857131958008) rotate(127.3) scale(${
+				(0.27 * Math.min(Math.max(1 - (scrollY * 4 - 305.2010730241524 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(1088.2857055664062, 412.2857131958008) rotate(80) scale(0.33)"
+			transform={`translate(1088.2857055664062, 412.2857131958008) rotate(80) scale(${
+				(0.33 * Math.min(Math.max(1 - (scrollY * 4 - 267.73624219944764 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(1027.2857055664062, 466.2857131958008) rotate(182) scale(0.29)"
+			transform={`translate(1027.2857055664062, 466.2857131958008) rotate(182) scale(${
+				(0.29 * Math.min(Math.max(1 - (scrollY * 4 - 187.52518852977119 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(1030.2857055664062, 453.2857131958008) rotate(236.6) scale(0.24)"
+			transform={`translate(1030.2857055664062, 453.2857131958008) rotate(236.6) scale(${
+				(0.24 * Math.min(Math.max(1 - (scrollY * 4 - 196.77647731228913 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(1023.2857055664062, 376.2857131958008) rotate(34.5) scale(0.2)"
+			transform={`translate(1023.2857055664062, 376.2857131958008) rotate(34.5) scale(${
+				(0.2 * Math.min(Math.max(1 - (scrollY * 4 - 242.02062373556274 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(984.2857055664062, 459.2857131958008) rotate(0) scale(0.32)"
+			transform={`translate(984.2857055664062, 459.2857131958008) rotate(0) scale(${
+				(0.32 * Math.min(Math.max(1 - (scrollY * 4 - 155.9234609341201 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(943.2857055664062, 495.2857131958008) rotate(47.2) scale(0.29)"
+			transform={`translate(943.2857055664062, 495.2857131958008) rotate(47.2) scale(${
+				(0.29 * Math.min(Math.max(1 - (scrollY * 4 - 101.40152446253666 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(981.2857055664062, 481.2857131958008) rotate(263.9) scale(0.27)"
+			transform={`translate(981.2857055664062, 481.2857131958008) rotate(263.9) scale(${
+				(0.27 * Math.min(Math.max(1 - (scrollY * 4 - 140.42073499626355 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(900.2857055664062, 546.5714263916016) rotate(63.6) scale(0.27)"
+			transform={`translate(900.2857055664062, 546.5714263916016) rotate(63.6) scale(${
+				(0.27 * Math.min(Math.max(1 - (scrollY * 4 - 38.196116252610096 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(940.2857055664062, 551.5714263916016) rotate(293) scale(0.32)"
+			transform={`translate(940.2857055664062, 551.5714263916016) rotate(293) scale(${
+				(0.32 * Math.min(Math.max(1 - (scrollY * 4 - 76.5996997775541 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(1037.2857055664062, 383.42857360839844) rotate(260.2) scale(0.36)"
+			transform={`translate(1037.2857055664062, 383.42857360839844) rotate(260.2) scale(${
+				(0.36 * Math.min(Math.max(1 - (scrollY * 4 - 246.32892662543148 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(1003.2857055664062, 410.42857360839844) rotate(227.5) scale(0.61)"
+			transform={`translate(1003.2857055664062, 410.42857360839844) rotate(227.5) scale(${
+				(0.61 * Math.min(Math.max(1 - (scrollY * 4 - 203.2871247491466 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(963.2857055664062, 408.42857360839844) rotate(60) scale(0.45)"
+			transform={`translate(963.2857055664062, 408.42857360839844) rotate(60) scale(${
+				(0.45 * Math.min(Math.max(1 - (scrollY * 4 - 179.94189159011583 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(956.2857055664062, 442.42857360839844) rotate(89.1) scale(0.45)"
+			transform={`translate(956.2857055664062, 442.42857360839844) rotate(89.1) scale(${
+				(0.45 * Math.min(Math.max(1 - (scrollY * 4 - 148.28765112601388 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(853.2857055664062, 524.7142944335938) rotate(187.4) scale(0.38)"
+			transform={`translate(853.2857055664062, 524.7142944335938) rotate(187.4) scale(${
+				(0.38 * Math.min(Math.max(1 - (scrollY * 4 - 35.443899416255434 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(851.2857055664062, 561.7142944335938) rotate(101.9) scale(0.47)"
+			transform={`translate(851.2857055664062, 561.7142944335938) rotate(101.9) scale(${
+				(0.47 * Math.min(Math.max(1 - (scrollY * 4 - 13.114304085613723 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(851.2857055664062, 703.8571472167969) rotate(287.6) scale(0.24)"
+			transform={`translate(851.2857055664062, 703.8571472167969) rotate(287.6) scale(${
+				(0.24 * Math.min(Math.max(1 - (scrollY * 4 - 145.91214318880273 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(902.2857055664062, 520.7142944335938) rotate(262.1) scale(0.56)"
+			transform={`translate(902.2857055664062, 520.7142944335938) rotate(262.1) scale(${
+				(0.56 * Math.min(Math.max(1 - (scrollY * 4 - 53.79177256671037 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(941.7142944335938, 420.57142639160156) rotate(51.4) scale(0.29)"
+			transform={`translate(941.7142944335938, 420.57142639160156) rotate(51.4) scale(${
+				(0.29 * Math.min(Math.max(1 - (scrollY * 4 - 158.31551717048674 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-emerald-400"
 		/>
 	</svg>
 	<svg
 		class="main-text"
+		style={`transform: translate(-50%, -50%) scale(${Math.min(
+			Math.max(1 - (scrollY * 0.8) / innerHeight, 0),
+			1
+		)}); opacity: ${Math.min(Math.max(1 - (scrollY * 3) / innerHeight, 0), 1) || 0}`}
 		height="100%"
 		viewBox="0 0 1728 1117"
 		fill="none"
@@ -873,499 +1117,697 @@
 			/>
 		</defs>
 		<use
-			transform="translate(891, 73) rotate(289.3) scale(0.46)"
+			transform={`translate(891, 73) rotate(289.3) scale(${
+				(0.46 * Math.min(Math.max(1 - (scrollY * 4 - 486.2501928020183 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(922, 85) rotate(271.2) scale(0.42)"
+			transform={`translate(922, 85) rotate(271.2) scale(${
+				(0.42 * Math.min(Math.max(1 - (scrollY * 4 - 477.0390445236113 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(900, 117) rotate(191.1) scale(0.42)"
+			transform={`translate(900, 117) rotate(191.1) scale(${
+				(0.42 * Math.min(Math.max(1 - (scrollY * 4 - 442.9652920940872 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(828, 114) rotate(318.5) scale(0.18)"
+			transform={`translate(828, 114) rotate(318.5) scale(${
+				(0.18 * Math.min(Math.max(1 - (scrollY * 4 - 445.9554349932289 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(880, 215) rotate(334.9) scale(0.3)"
+			transform={`translate(880, 215) rotate(334.9) scale(${
+				(0.3 * Math.min(Math.max(1 - (scrollY * 4 - 343.8724327421435 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(825, 258) rotate(152.9) scale(0.3)"
+			transform={`translate(825, 258) rotate(152.9) scale(${
+				(0.3 * Math.min(Math.max(1 - (scrollY * 4 - 303.02021384719535 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(956, 38) rotate(251.2) scale(0.21)"
+			transform={`translate(956, 38) rotate(251.2) scale(${
+				(0.21 * Math.min(Math.max(1 - (scrollY * 4 - 528.5681129239637 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(858, 349) rotate(40) scale(0.44)"
+			transform={`translate(858, 349) rotate(40) scale(${
+				(0.44 * Math.min(Math.max(1 - (scrollY * 4 - 209.5859012433804 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(971, -3) rotate(40) scale(0.44)"
+			transform={`translate(971, -3) rotate(40) scale(${
+				(0.44 * Math.min(Math.max(1 - (scrollY * 4 - 571.604102504522 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(897, 37) rotate(320.3) scale(0.44)"
+			transform={`translate(897, 37) rotate(320.3) scale(${
+				(0.44 * Math.min(Math.max(1 - (scrollY * 4 - 522.5430604266026 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(971, 25) rotate(240.2) scale(0.29)"
+			transform={`translate(971, 25) rotate(240.2) scale(${
+				(0.29 * Math.min(Math.max(1 - (scrollY * 4 - 544.1242964617552 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(944, -3) rotate(240.2) scale(0.29)"
+			transform={`translate(944, -3) rotate(240.2) scale(${
+				(0.29 * Math.min(Math.max(1 - (scrollY * 4 - 567.1703888603495 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(962, 71) rotate(174.7) scale(0.61)"
+			transform={`translate(962, 71) rotate(174.7) scale(${
+				(0.61 * Math.min(Math.max(1 - (scrollY * 4 - 497.25270235565335 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(834, 87) rotate(174.7) scale(0.3)"
+			transform={`translate(834, 87) rotate(174.7) scale(${
+				(0.3 * Math.min(Math.max(1 - (scrollY * 4 - 472.4534368591258 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(904, 144) rotate(0) scale(0.3)"
+			transform={`translate(904, 144) rotate(0) scale(${
+				(0.3 * Math.min(Math.max(1 - (scrollY * 4 - 416.42556357649323 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(945, 153) rotate(45.5) scale(0.26)"
+			transform={`translate(945, 153) rotate(45.5) scale(${
+				(0.26 * Math.min(Math.max(1 - (scrollY * 4 - 413.5108825653806 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(858, 271) rotate(45.5) scale(0.32)"
+			transform={`translate(858, 271) rotate(45.5) scale(${
+				(0.32 * Math.min(Math.max(1 - (scrollY * 4 - 287.56260188000806 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(759, 240) rotate(254.8) scale(0.24)"
+			transform={`translate(759, 240) rotate(254.8) scale(${
+				(0.24 * Math.min(Math.max(1 - (scrollY * 4 - 335.3613722538718 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(791, 156) rotate(360) scale(0.27)"
+			transform={`translate(791, 156) rotate(360) scale(${
+				(0.27 * Math.min(Math.max(1 - (scrollY * 4 - 409.066314917276 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(804, 283) rotate(360) scale(0.24)"
+			transform={`translate(804, 283) rotate(360) scale(${
+				(0.24 * Math.min(Math.max(1 - (scrollY * 4 - 281.957886926399 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(877, 300) rotate(171.1) scale(0.26)"
+			transform={`translate(877, 300) rotate(171.1) scale(${
+				(0.26 * Math.min(Math.max(1 - (scrollY * 4 - 258.8266794594406 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(890, 322) rotate(182) scale(0.68)"
+			transform={`translate(890, 322) rotate(182) scale(${
+				(0.68 * Math.min(Math.max(1 - (scrollY * 4 - 237.92488310389058 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(845, 137) rotate(18.1) scale(0.86)"
+			transform={`translate(845, 137) rotate(18.1) scale(${
+				(0.86 * Math.min(Math.max(1 - (scrollY * 4 - 421.92801518742505 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(873, 167) rotate(171.1) scale(1.02)"
+			transform={`translate(873, 167) rotate(171.1) scale(${
+				(1.02 * Math.min(Math.max(1 - (scrollY * 4 - 391.6034346121086 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(805, 135) rotate(269.4) scale(0.62)"
+			transform={`translate(805, 135) rotate(269.4) scale(${
+				(0.62 * Math.min(Math.max(1 - (scrollY * 4 - 427.5900489955303 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(899, 191) rotate(342.2) scale(0.5)"
+			transform={`translate(899, 191) rotate(342.2) scale(${
+				(0.5 * Math.min(Math.max(1 - (scrollY * 4 - 369.1629044202573 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(877, 250) rotate(318.5) scale(0.85)"
+			transform={`translate(877, 250) rotate(318.5) scale(${
+				(0.85 * Math.min(Math.max(1 - (scrollY * 4 - 308.7737845089832 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(870, 104) rotate(101.9) scale(0.45)"
+			transform={`translate(870, 104) rotate(101.9) scale(${
+				(0.45 * Math.min(Math.max(1 - (scrollY * 4 - 454.53960223505277 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(862, 32) rotate(209.3) scale(0.41)"
+			transform={`translate(862, 32) rotate(209.3) scale(${
+				(0.41 * Math.min(Math.max(1 - (scrollY * 4 - 526.5037986567618 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(822, 60) rotate(231.1) scale(0.24)"
+			transform={`translate(822, 60) rotate(231.1) scale(${
+				(0.24 * Math.min(Math.max(1 - (scrollY * 4 - 500.2661791486608 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(930, 23) rotate(187.5) scale(0.61)"
+			transform={`translate(930, 23) rotate(187.5) scale(${
+				(0.61 * Math.min(Math.max(1 - (scrollY * 4 - 539.5518974111758 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(937, 55) rotate(65.5) scale(0.5)"
+			transform={`translate(937, 55) rotate(65.5) scale(${
+				(0.5 * Math.min(Math.max(1 - (scrollY * 4 - 508.76443468465834 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(911, 338) rotate(200.2) scale(0.36)"
+			transform={`translate(911, 338) rotate(200.2) scale(${
+				(0.36 * Math.min(Math.max(1 - (scrollY * 4 - 225.45343199871675 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(792, 303) rotate(49.1) scale(0.48)"
+			transform={`translate(792, 303) rotate(49.1) scale(${
+				(0.48 * Math.min(Math.max(1 - (scrollY * 4 - 265.4510312656555 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(852.7142944335938, 422.8571472167969) rotate(55.1) scale(0.56)"
+			transform={`translate(852.7142944335938, 422.8571472167969) rotate(55.1) scale(${
+				(0.56 * Math.min(Math.max(1 - (scrollY * 4 - 136.11153757597967 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(821.7142944335938, 453.8571472167969) rotate(78.7) scale(0.28)"
+			transform={`translate(821.7142944335938, 453.8571472167969) rotate(78.7) scale(${
+				(0.28 * Math.min(Math.max(1 - (scrollY * 4 - 112.86366790892419 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(786.7142944335938, 452.57142639160156) rotate(166.1) scale(0.47)"
+			transform={`translate(786.7142944335938, 452.57142639160156) rotate(166.1) scale(${
+				(0.47 * Math.min(Math.max(1 - (scrollY * 4 - 131.12567632468907 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(872.7142944335938, 462.57142639160156) rotate(224.4) scale(0.22)"
+			transform={`translate(872.7142944335938, 462.57142639160156) rotate(224.4) scale(${
+				(0.22 * Math.min(Math.max(1 - (scrollY * 4 - 96.32357012703216 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(935.7142944335938, 465.57142639160156) rotate(360) scale(0.28)"
+			transform={`translate(935.7142944335938, 465.57142639160156) rotate(360) scale(${
+				(0.28 * Math.min(Math.max(1 - (scrollY * 4 - 117.38253626072195 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(823.7142944335938, 593.5714263916016) rotate(31.4) scale(0.29)"
+			transform={`translate(823.7142944335938, 593.5714263916016) rotate(31.4) scale(${
+				(0.29 * Math.min(Math.max(1 - (scrollY * 4 - 53.41294807558091 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-rose-500"
 		/>
 		<use
-			transform="translate(866.7142944335938, 575.5714263916016) rotate(273.5) scale(0.29)"
+			transform={`translate(866.7142944335938, 575.5714263916016) rotate(273.5) scale(${
+				(0.29 * Math.min(Math.max(1 - (scrollY * 4 - 17.285861081129525 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(795.7142944335938, 640.5714263916016) rotate(350) scale(0.52)"
+			transform={`translate(795.7142944335938, 640.5714263916016) rotate(350) scale(${
+				(0.52 * Math.min(Math.max(1 - (scrollY * 4 - 106.76449135669593 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-pink-200 shrink"
 		/>
 		<use
-			transform="translate(773.7142944335938, 712.8571472167969) rotate(138.8) scale(0.49)"
+			transform={`translate(773.7142944335938, 712.8571472167969) rotate(138.8) scale(${
+				(0.49 * Math.min(Math.max(1 - (scrollY * 4 - 178.82292226258832 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(823.7142944335938, 763.1428527832031) rotate(244.4) scale(0.49)"
+			transform={`translate(823.7142944335938, 763.1428527832031) rotate(244.4) scale(${
+				(0.49 * Math.min(Math.max(1 - (scrollY * 4 - 208.57045636482394 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(794.7142944335938, 900.5714111328125) rotate(44.1) scale(0.49)"
+			transform={`translate(794.7142944335938, 900.5714111328125) rotate(44.1) scale(${
+				(0.49 * Math.min(Math.max(1 - (scrollY * 4 - 349.01770629901915 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(758.7142944335938, 962.5714111328125) rotate(118.8) scale(1.34)"
+			transform={`translate(758.7142944335938, 962.5714111328125) rotate(118.8) scale(${
+				(1.34 * Math.min(Math.max(1 - (scrollY * 4 - 417.5629115372657 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(811.7142944335938, 853.5714111328125) rotate(206.2) scale(0.82)"
+			transform={`translate(811.7142944335938, 853.5714111328125) rotate(206.2) scale(${
+				(0.82 * Math.min(Math.max(1 - (scrollY * 4 - 299.6680374589292 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(836.7142944335938, 805.4285888671875) rotate(346.3) scale(0.64)"
+			transform={`translate(836.7142944335938, 805.4285888671875) rotate(346.3) scale(${
+				(0.64 * Math.min(Math.max(1 - (scrollY * 4 - 248.43155541959064 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(788.7142944335938, 829.4285888671875) rotate(337.2) scale(0.53)"
+			transform={`translate(788.7142944335938, 829.4285888671875) rotate(337.2) scale(${
+				(0.53 * Math.min(Math.max(1 - (scrollY * 4 - 281.1943060024458 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(847.7142944335938, 776.4285888671875) rotate(300.8) scale(0.4)"
+			transform={`translate(847.7142944335938, 776.4285888671875) rotate(300.8) scale(${
+				(0.4 * Math.min(Math.max(1 - (scrollY * 4 - 218.53625340304367 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(751.7142944335938, 925.8571166992188) rotate(231.7) scale(0.4)"
+			transform={`translate(751.7142944335938, 925.8571166992188) rotate(231.7) scale(${
+				(0.4 * Math.min(Math.max(1 - (scrollY * 4 - 384.1345218333144 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(854.7142944335938, 649.4285583496094) rotate(279) scale(0.4)"
+			transform={`translate(854.7142944335938, 649.4285583496094) rotate(279) scale(${
+				(0.4 * Math.min(Math.max(1 - (scrollY * 4 - 91.40146088222171 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(786.7142944335938, 616.4285583496094) rotate(96.9) scale(0.31)"
+			transform={`translate(786.7142944335938, 616.4285583496094) rotate(96.9) scale(${
+				(0.31 * Math.min(Math.max(1 - (scrollY * 4 - 96.58570369035645 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(805.7142944335938, 664.4285583496094) rotate(96.9) scale(0.26)"
+			transform={`translate(805.7142944335938, 664.4285583496094) rotate(96.9) scale(${
+				(0.26 * Math.min(Math.max(1 - (scrollY * 4 - 120.9052643494087 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(829.7142944335938, 665.4285583496094) rotate(78.7) scale(0.19)"
+			transform={`translate(829.7142944335938, 665.4285583496094) rotate(78.7) scale(${
+				(0.19 * Math.min(Math.max(1 - (scrollY * 4 - 112.2908108302372 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(818.7142944335938, 905.8571166992188) rotate(313.6) scale(0.19)"
+			transform={`translate(818.7142944335938, 905.8571166992188) rotate(313.6) scale(${
+				(0.19 * Math.min(Math.max(1 - (scrollY * 4 - 350.29667661889385 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(787.7142944335938, 742.5714111328125) rotate(279) scale(0.67)"
+			transform={`translate(787.7142944335938, 742.5714111328125) rotate(279) scale(${
+				(0.67 * Math.min(Math.max(1 - (scrollY * 4 - 199.25308848343937 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(796.7142944335938, 779.5714111328125) rotate(340.9) scale(0.5)"
+			transform={`translate(796.7142944335938, 779.5714111328125) rotate(340.9) scale(${
+				(0.5 * Math.min(Math.max(1 - (scrollY * 4 - 231.08425951116214 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(851.7142944335938, 863.5714111328125) rotate(204.3) scale(1.16)"
+			transform={`translate(851.7142944335938, 863.5714111328125) rotate(204.3) scale(${
+				(1.16 * Math.min(Math.max(1 - (scrollY * 4 - 305.31869325645613 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(767.7142944335938, 875.5714111328125) rotate(166.1) scale(0.52)"
+			transform={`translate(767.7142944335938, 875.5714111328125) rotate(166.1) scale(${
+				(0.52 * Math.min(Math.max(1 - (scrollY * 4 - 331.3687022851942 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(761.7142944335938, 794.5714111328125) rotate(13.2) scale(0.34)"
+			transform={`translate(761.7142944335938, 794.5714111328125) rotate(13.2) scale(${
+				(0.34 * Math.min(Math.max(1 - (scrollY * 4 - 257.2782087885698 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(802.7142944335938, 703.5714111328125) rotate(289.9) scale(0.52)"
+			transform={`translate(802.7142944335938, 703.5714111328125) rotate(289.9) scale(${
+				(0.52 * Math.min(Math.max(1 - (scrollY * 4 - 157.48540260874262 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(758.7142944335938, 688.5714111328125) rotate(25.9) scale(0.28)"
+			transform={`translate(758.7142944335938, 688.5714111328125) rotate(25.9) scale(${
+				(0.28 * Math.min(Math.max(1 - (scrollY * 4 - 167.34291676284695 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(818.7142944335938, 611.5714111328125) rotate(291.7) scale(0.34)"
+			transform={`translate(818.7142944335938, 611.5714111328125) rotate(291.7) scale(${
+				(0.34 * Math.min(Math.max(1 - (scrollY * 4 - 69.76653788368212 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(700.7142944335938, 719.5714111328125) rotate(333.6) scale(0.22)"
+			transform={`translate(700.7142944335938, 719.5714111328125) rotate(333.6) scale(${
+				(0.22 * Math.min(Math.max(1 - (scrollY * 4 - 229.36046112317317 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(716.7142944335938, 759.5714111328125) rotate(177) scale(0.19)"
+			transform={`translate(716.7142944335938, 759.5714111328125) rotate(177) scale(${
+				(0.19 * Math.min(Math.max(1 - (scrollY * 4 - 249.24444113988707 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(756.7142944335938, 759.5714111328125) rotate(155.2) scale(0.19)"
+			transform={`translate(756.7142944335938, 759.5714111328125) rotate(155.2) scale(${
+				(0.19 * Math.min(Math.max(1 - (scrollY * 4 - 227.90334572757402 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(808.7142944335938, 806.5714111328125) rotate(71.5) scale(0.2)"
+			transform={`translate(808.7142944335938, 806.5714111328125) rotate(71.5) scale(${
+				(0.2 * Math.min(Math.max(1 - (scrollY * 4 - 254.1573021996422 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(860.7142944335938, 801.5714111328125) rotate(235.3) scale(0.2)"
+			transform={`translate(860.7142944335938, 801.5714111328125) rotate(235.3) scale(${
+				(0.2 * Math.min(Math.max(1 - (scrollY * 4 - 243.09361729828672 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(857.7142944335938, 827.5714111328125) rotate(115.1) scale(0.22)"
+			transform={`translate(857.7142944335938, 827.5714111328125) rotate(115.1) scale(${
+				(0.22 * Math.min(Math.max(1 - (scrollY * 4 - 269.14482046561955 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(819.7142944335938, 879.5714111328125) rotate(27.8) scale(0.32)"
+			transform={`translate(819.7142944335938, 879.5714111328125) rotate(27.8) scale(${
+				(0.32 * Math.min(Math.max(1 - (scrollY * 4 - 324.11120740315346 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(742.7142944335938, 990.8571166992188) rotate(27.8) scale(0.31)"
+			transform={`translate(742.7142944335938, 990.8571166992188) rotate(27.8) scale(${
+				(0.31 * Math.min(Math.max(1 - (scrollY * 4 - 449.0466554103291 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-pink-200"
 		/>
 		<use
-			transform="translate(756.7142944335938, 825.8571166992188) rotate(162.5) scale(0.31)"
+			transform={`translate(756.7142944335938, 825.8571166992188) rotate(162.5) scale(${
+				(0.31 * Math.min(Math.max(1 - (scrollY * 4 - 288.07993763641593 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-zinc-800"
 		/>
 		<use
-			transform="translate(725.7142944335938, 1017.8571166992188) rotate(193.4) scale(0.31)"
+			transform={`translate(725.7142944335938, 1017.8571166992188) rotate(193.4) scale(${
+				(0.31 * Math.min(Math.max(1 - (scrollY * 4 - 479.72064477799836 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-zinc-800"
 		/>
 		<use
-			transform="translate(749.7142944335938, 1099.8571166992188) rotate(237.1) scale(0.31)"
+			transform={`translate(749.7142944335938, 1099.8571166992188) rotate(237.1) scale(${
+				(0.31 * Math.min(Math.max(1 - (scrollY * 4 - 553.2890296198749 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-zinc-800"
 		/>
 		<use
-			transform="translate(691.7142944335938, 1037.8571166992188) rotate(304.5) scale(0.52)"
+			transform={`translate(691.7142944335938, 1037.8571166992188) rotate(304.5) scale(${
+				(0.52 * Math.min(Math.max(1 - (scrollY * 4 - 509.3776689968877 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-zinc-800"
 		/>
 		<use
-			transform="translate(750.7142944335938, 1011.8571166992188) rotate(360) scale(0.46)"
+			transform={`translate(750.7142944335938, 1011.8571166992188) rotate(360) scale(${
+				(0.46 * Math.min(Math.max(1 - (scrollY * 4 - 467.2968289508367 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-zinc-800"
 		/>
 		<use
-			transform="translate(769.7142944335938, 909.8571166992188) rotate(147.9) scale(0.44)"
+			transform={`translate(769.7142944335938, 909.8571166992188) rotate(147.9) scale(${
+				(0.44 * Math.min(Math.max(1 - (scrollY * 4 - 363.7878746321041 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-zinc-800"
 		/>
 		<use
-			transform="translate(811.7142944335938, 933.8571166992188) rotate(317.2) scale(0.41)"
+			transform={`translate(811.7142944335938, 933.8571166992188) rotate(317.2) scale(${
+				(0.41 * Math.min(Math.max(1 - (scrollY * 4 - 378.9812133382443 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-zinc-800"
 		/>
 		<use
-			transform="translate(723.7142944335938, 1060.8571166992188) rotate(98.8) scale(0.41)"
+			transform={`translate(723.7142944335938, 1060.8571166992188) rotate(98.8) scale(${
+				(0.41 * Math.min(Math.max(1 - (scrollY * 4 - 521.5771773042001 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-zinc-800"
 		/>
 		<use
-			transform="translate(710.7142944335938, 1099.8571166992188) rotate(299) scale(1.07)"
+			transform={`translate(710.7142944335938, 1099.8571166992188) rotate(299) scale(${
+				(1.07 * Math.min(Math.max(1 - (scrollY * 4 - 562.6402361472938 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-zinc-800"
 		/>
 		<use
-			transform="translate(806.7142944335938, 963.8571166992188) rotate(35) scale(0.23)"
+			transform={`translate(806.7142944335938, 963.8571166992188) rotate(35) scale(${
+				(0.23 * Math.min(Math.max(1 - (scrollY * 4 - 409.38495834720777 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-zinc-800"
 		/>
 		<use
-			transform="translate(745.7142944335938, 1038.8571166992188) rotate(222.6) scale(0.57)"
+			transform={`translate(745.7142944335938, 1038.8571166992188) rotate(222.6) scale(${
+				(0.57 * Math.min(Math.max(1 - (scrollY * 4 - 494.70644599088195 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-zinc-800"
 		/>
 		<use
-			transform="translate(673.7142944335938, 1108.8571166992188) rotate(167.9) scale(0.75)"
+			transform={`translate(673.7142944335938, 1108.8571166992188) rotate(167.9) scale(${
+				(0.75 * Math.min(Math.max(1 - (scrollY * 4 - 582.324313114593 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-zinc-800"
 		/>
 		<use
-			transform="translate(789.7142944335938, 928.8571166992188) rotate(142.5) scale(0.37)"
+			transform={`translate(789.7142944335938, 928.8571166992188) rotate(142.5) scale(${
+				(0.37 * Math.min(Math.max(1 - (scrollY * 4 - 377.7337156533125 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-zinc-800"
 		/>
 		<use
-			transform="translate(853.7142944335938, 910.8571166992188) rotate(200.7) scale(0.58)"
+			transform={`translate(853.7142944335938, 910.8571166992188) rotate(200.7) scale(${
+				(0.58 * Math.min(Math.max(1 - (scrollY * 4 - 352.50721046183673 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-zinc-800"
 		/>
 		<use
-			transform="translate(782.7142944335938, 1000.8571166992188) rotate(351.8) scale(0.58)"
+			transform={`translate(782.7142944335938, 1000.8571166992188) rotate(351.8) scale(${
+				(0.58 * Math.min(Math.max(1 - (scrollY * 4 - 449.7634763115773 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-zinc-800"
 		/>
 		<use
-			transform="translate(851.7142944335938, 617.2857055664062) rotate(80.6) scale(0.31)"
+			transform={`translate(851.7142944335938, 617.2857055664062) rotate(80.6) scale(${
+				(0.31 * Math.min(Math.max(1 - (scrollY * 4 - 60.05578856533842 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-amber-300"
 		/>
 		<use
-			transform="translate(762.8571166992188, 644.5714263916016) rotate(54.5) scale(0.24)"
+			transform={`translate(762.8571166992188, 644.5714263916016) rotate(54.5) scale(${
+				(0.24 * Math.min(Math.max(1 - (scrollY * 4 - 132.80878466231192 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(776.8571166992188, 677.8571472167969) rotate(289.4) scale(0.23)"
+			transform={`translate(776.8571166992188, 677.8571472167969) rotate(289.4) scale(${
+				(0.23 * Math.min(Math.max(1 - (scrollY * 4 - 147.7836618226308 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-amber-300"
 		/>
 
 		<use
-			transform="translate(730.8571166992188, 656.8571472167969) rotate(112.8) scale(0.23)"
+			transform={`translate(730.8571166992188, 656.8571472167969) rotate(112.8) scale(${
+				(0.23 * Math.min(Math.max(1 - (scrollY * 4 - 165.53294470368158 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-2"
 			class="fill-amber-300"
 		/>
 		<use
-			transform="translate(864.2857055664062, 599.7142944335938) rotate(136.5) scale(0.52)"
+			transform={`translate(864.2857055664062, 599.7142944335938) rotate(136.5) scale(${
+				(0.52 * Math.min(Math.max(1 - (scrollY * 4 - 41.21528470518713 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(826.2857055664062, 638) rotate(96.4) scale(0.38)"
+			transform={`translate(826.2857055664062, 638) rotate(96.4) scale(${
+				(0.38 * Math.min(Math.max(1 - (scrollY * 4 - 87.99214740318479 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(873.2857055664062, 630.8571472167969) rotate(347.6) scale(0.33)"
+			transform={`translate(873.2857055664062, 630.8571472167969) rotate(347.6) scale(${
+				(0.33 * Math.min(Math.max(1 - (scrollY * 4 - 72.95053859444222 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(889.2857055664062, 648.8571472167969) rotate(38.1) scale(0.47)"
+			transform={`translate(889.2857055664062, 648.8571472167969) rotate(38.1) scale(${
+				(0.47 * Math.min(Math.max(1 - (scrollY * 4 - 93.82846561224845 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(836.2857055664062, 682) rotate(236.6) scale(0.38)"
+			transform={`translate(836.2857055664062, 682) rotate(236.6) scale(${
+				(0.38 * Math.min(Math.max(1 - (scrollY * 4 - 126.57145063540959 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(884.2857055664062, 676.8571472167969) rotate(96.4) scale(0.52)"
+			transform={`translate(884.2857055664062, 676.8571472167969) rotate(96.4) scale(${
+				(0.52 * Math.min(Math.max(1 - (scrollY * 4 - 120.08298858550054 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-1"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(866.2857055664062, 728) rotate(41.8) scale(0.47)"
+			transform={`translate(866.2857055664062, 728) rotate(41.8) scale(${
+				(0.47 * Math.min(Math.max(1 - (scrollY * 4 - 169.51541065618872 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-emerald-400"
 		/>
 		<use
-			transform="translate(841.2857055664062, 740) rotate(282.1) scale(0.45)"
+			transform={`translate(841.2857055664062, 740) rotate(282.1) scale(${
+				(0.45 * Math.min(Math.max(1 - (scrollY * 4 - 182.91579803728268 * 2) / innerHeight, 0), 1)) || 0
+			})`}
 			href="#shape-3"
 			class="fill-emerald-400"
 		/>
@@ -1400,24 +1842,4 @@
 			width: 150vw;
 		}
 	}
-	/* 
-	svg {
-		height: 100%;
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
-	svg:first-child {
-		top: 0;
-		left: 0;
-		position: relative;
-		transform: none;
-	}
-
-	@media screen and (max-width: 960px) {
-		.shrink {
-			display: none;
-		}
-	} */
 </style>

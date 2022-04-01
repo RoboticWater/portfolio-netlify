@@ -1,7 +1,7 @@
 export const SITE_URL = 'https://britti.page';
 export const GH_USER_REPO = 'RoboticWater/portfolio-netlify'; // used for pulling github issues and offering comments
 export const REPO_URL = 'https://github.com/' + GH_USER_REPO;
-export const SITE_TITLE = 'Portfolio | John Britti';
+export const SITE_TITLE = 'John Britti — Portfolio';
 export const SITE_DESCRIPTION = "John Britti's portfolio";
 export const DEFAULT_OG_IMAGE =
 	'https://user-images.githubusercontent.com/6764957/147861359-3ad9438f-41d1-47c8-aa05-95c7d18497f0.png';
